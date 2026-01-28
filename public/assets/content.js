@@ -109,7 +109,7 @@ const createEventCard = (event) => {
     "Join us for an intimate community gathering featuring live tabla and Hindustani music.";
   const summary = `<p>${summaryText}</p>`;
   const image = event.image
-    ? `<img src="${event.image}" alt="${event.title || "Event image"}" loading="lazy" decoding="async" />`
+    ? `<img src="${encodeURI(event.image)}" alt="${event.title || "Event image"}" loading="lazy" decoding="async" />`
     : "";
   const details = event.body
     ? `<details class="event-body"><summary>View event details</summary>${event.body}</details>`
@@ -218,7 +218,7 @@ const renderGallery = async () => {
       const card = document.createElement("div");
       card.className = "media-card";
       card.innerHTML = `
-        <img src="${photo.image}" alt="${photo.alt || "STI gallery"}" />
+        <img src="${encodeURI(photo.image)}" alt="${photo.alt || "STI gallery"}" loading="lazy" decoding="async" />
         ${photo.caption ? `<p class="media-caption">${photo.caption}</p>` : ""}
       `;
       photoGrid.appendChild(card);
