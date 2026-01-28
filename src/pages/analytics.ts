@@ -19,6 +19,10 @@ export async function OPTIONS() {
   return new Response(null, { status: 204, headers: buildHeaders() });
 }
 
+export async function GET() {
+  return new Response(null, { status: 204, headers: buildHeaders() });
+}
+
 export async function POST({ request }: { request: Request }) {
   const payload = await parseBody(request);
   const logEntry = {
