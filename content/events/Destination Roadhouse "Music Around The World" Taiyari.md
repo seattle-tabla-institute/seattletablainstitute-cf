@@ -6,6 +6,9 @@ status: upcoming
 location: The Roadhouse 19955 28th Avenue South SeaTac, WA 98188
 featured: true
 summary: Indian classical music - Kathak Dance and Sarod and Tabla performance
+image: >-
+  /assets/uploads/Destination Roadhouse "Music Around The World"
+  Taiyari/image.webp
 ---
 Pooja Ganesh is a Kathak dancer, choreographer, and vocalist with over 15 years of training under Sangeet Natak Akademi awardees Smt. Nirupama Rajendra and Shri T.D. Rajendra, and currently under Gurus Parul Shah and Smt. Nirmala Madhava (Pampa) in the U.S. She has performed and presented original works at prestigious venues and festivals including Mysore Dasara, Bangalore International Film Festival, Moore Theatre (Seattle Theatre Group), New York Kathak Festival, YUVA Festival, and Yuva Bharati. An Artist-in-Residence with Seattle Theatre Group in 2024, she has toured internationally with Abhinava Dance Company and collaborated on cross-cultural productions such as Kathak–Flamenco.
 
