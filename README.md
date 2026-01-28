@@ -79,3 +79,12 @@ Environment variables:
 ## Notes
 - Update PayPal links when ready.
 - Replace gallery placeholders in `assets/uploads/`.
+
+## Ad Grants website readiness checklist
+- HTTPS-only links and assets
+- Clear nonprofit mission and 501(c)(3) status visible site-wide
+- Contact information available on every page
+- Policies page includes privacy, terms of use, and refund/cancellation policy
+- No ad-network ads or commercial-only messaging
+- Clear navigation with dedicated Programs, Events, and Join pages
+- Per-page metadata, canonical URLs, sitemap.xml, and robots.txt in place

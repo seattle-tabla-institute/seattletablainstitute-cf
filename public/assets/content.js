@@ -102,19 +102,25 @@ const createEventCard = (event) => {
   const card = document.createElement("article");
   card.className = "card event-card";
   const category = event.category ? `<p class="pill">${event.category}</p>` : "";
-  const metaParts = [event.dateLabel, event.timeLabel, event.location].filter(Boolean);
-  const meta = metaParts.length ? `<p class="event-meta">${metaParts.join(" | ")}</p>` : "";
-  const summary = event.summary ? `<p>${event.summary}</p>` : "";
+  const metaParts = [event.dateLabel, event.timeLabel, event.location || "Location TBA"].filter(Boolean);
+  const meta = metaParts.length ? `<p class="event-meta">${metaParts.join(" · ")}</p>` : "";
+  const summaryText =
+    event.summary ||
+    "Join us for an intimate community gathering featuring live tabla and Hindustani music.";
+  const summary = `<p>${summaryText}</p>`;
   const image = event.image
     ? `<img src="${event.image}" alt="${event.title || "Event image"}" />`
     : "";
+  const details = event.body
+    ? `<details class="event-body"><summary>View event details</summary>${event.body}</details>`
+    : `<a class="button ghost" href="contact.html">View event details</a>`;
   card.innerHTML = `
     ${category}
     ${image}
     <h3>${event.title || "Event"}</h3>
     ${meta}
     ${summary}
-    ${event.body ? `<div class="event-body">${event.body}</div>` : ""}
+    ${details}
   `;
   return card;
 };
@@ -151,6 +157,33 @@ const renderEvents = async () => {
     const hasEvents = (data.upcoming || []).length > 0;
     emptyMessage.style.display = hasEvents ? "none" : "block";
   }
+};
+
+const renderHomeEvent = async () => {
+  const homeCard = document.querySelector("#home-upcoming");
+  if (!homeCard) {
+    return;
+  }
+
+  const data = await loadJson("data/events.json");
+  const event = data && (data.upcoming || [])[0];
+  if (!event) {
+    return;
+  }
+
+  const metaParts = [event.dateLabel, event.timeLabel, event.location || "Location TBA"].filter(Boolean);
+  const meta = metaParts.length ? `<p class="event-meta">${metaParts.join(" · ")}</p>` : "";
+  const summaryText =
+    event.summary ||
+    "Join us for an intimate community gathering featuring live tabla and Hindustani music.";
+
+  homeCard.innerHTML = `
+    <p class="pill">Upcoming event</p>
+    <h2>${event.title || "Upcoming event"}</h2>
+    ${meta}
+    <p>${summaryText}</p>
+    <a class="button ghost" href="events.html">View event details</a>
+  `;
 };
 
 const toYouTubeEmbed = (url) => {
@@ -220,5 +253,6 @@ const renderGallery = async () => {
 document.addEventListener("DOMContentLoaded", () => {
   renderClasses();
   renderEvents();
+  renderHomeEvent();
   renderGallery();
 });
