@@ -35,7 +35,12 @@ export default config({
         location: fields.text({ label: "Location", validation: { isRequired: false } }),
         featured: fields.checkbox({ label: "Featured", defaultValue: false }),
         summary: fields.text({ label: "Summary", multiline: true, validation: { isRequired: false } }),
-        image: fields.text({ label: "Image", validation: { isRequired: false } }),
+        image: fields.image({
+          label: "Image",
+          directory: "public/assets/uploads",
+          publicPath: "/assets/uploads",
+          validation: { isRequired: false }
+        }),
         body: fields.markdoc({ label: "Details", extension: "md" })
       }
     })
@@ -50,12 +55,10 @@ export default config({
           label: "Youth",
           fields: {
             highlights: fields.array(fields.text({ label: "Highlight" }), {
-              label: "Highlights",
-              itemLabel: (item) => item.value || "Highlight"
+              label: "Highlights"
             }),
             locations: fields.array(fields.text({ label: "Location" }), {
-              label: "Locations",
-              itemLabel: (item) => item.value || "Location"
+              label: "Locations"
             }),
             schedule_note: fields.text({
               label: "Schedule Note",
@@ -74,10 +77,7 @@ export default config({
                   })
                 }
               }),
-              {
-                label: "Pricing",
-                itemLabel: (item) => item.fields.label.value || "Pricing Item"
-              }
+              { label: "Pricing" }
             )
           }
         }),
@@ -85,12 +85,10 @@ export default config({
           label: "Adult",
           fields: {
             highlights: fields.array(fields.text({ label: "Highlight" }), {
-              label: "Highlights",
-              itemLabel: (item) => item.value || "Highlight"
+              label: "Highlights"
             }),
             locations: fields.array(fields.text({ label: "Location" }), {
-              label: "Locations",
-              itemLabel: (item) => item.value || "Location"
+              label: "Locations"
             }),
             schedule_note: fields.text({
               label: "Schedule Note",
@@ -109,10 +107,7 @@ export default config({
                   })
                 }
               }),
-              {
-                label: "Pricing",
-                itemLabel: (item) => item.fields.label.value || "Pricing Item"
-              }
+              { label: "Pricing" }
             )
           }
         })
@@ -127,7 +122,11 @@ export default config({
           fields.object({
             label: "Photo",
             fields: {
-              image: fields.text({ label: "Image" }),
+              image: fields.image({
+                label: "Image",
+                directory: "public/assets/uploads",
+                publicPath: "/assets/uploads"
+              }),
               alt: fields.text({ label: "Alt text" }),
               caption: fields.text({
                 label: "Caption",
@@ -135,10 +134,7 @@ export default config({
               })
             }
           }),
-          {
-            label: "Photos",
-            itemLabel: (item) => item.fields.alt.value || "Photo"
-          }
+          { label: "Photos" }
         ),
         videos: fields.array(
           fields.object({
@@ -148,10 +144,7 @@ export default config({
               url: fields.text({ label: "YouTube URL" })
             }
           }),
-          {
-            label: "Videos",
-            itemLabel: (item) => item.fields.title.value || "Video"
-          }
+          { label: "Videos" }
         )
       }
     })
