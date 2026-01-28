@@ -51,9 +51,8 @@ export default config({
       path: "public/data/classes",
       format: { data: "json" },
       schema: {
-        youth: fields.object({
-          label: "Youth",
-          fields: {
+        youth: fields.object(
+          {
             highlights: fields.array(fields.text({ label: "Highlight" }), {
               label: "Highlights"
             }),
@@ -66,24 +65,24 @@ export default config({
               validation: { isRequired: false }
             }),
             pricing: fields.array(
-              fields.object({
-                label: "Pricing Item",
-                fields: {
+              fields.object(
+                {
                   label: fields.text({ label: "Label" }),
                   price: fields.text({ label: "Price" }),
                   notes: fields.text({
                     label: "Notes",
                     validation: { isRequired: false }
                   })
-                }
-              }),
+                },
+                { label: "Pricing Item" }
+              ),
               { label: "Pricing" }
             )
-          }
-        }),
-        adult: fields.object({
-          label: "Adult",
-          fields: {
+          },
+          { label: "Youth" }
+        ),
+        adult: fields.object(
+          {
             highlights: fields.array(fields.text({ label: "Highlight" }), {
               label: "Highlights"
             }),
@@ -96,21 +95,22 @@ export default config({
               validation: { isRequired: false }
             }),
             pricing: fields.array(
-              fields.object({
-                label: "Pricing Item",
-                fields: {
+              fields.object(
+                {
                   label: fields.text({ label: "Label" }),
                   price: fields.text({ label: "Price" }),
                   notes: fields.text({
                     label: "Notes",
                     validation: { isRequired: false }
                   })
-                }
-              }),
+                },
+                { label: "Pricing Item" }
+              ),
               { label: "Pricing" }
             )
-          }
-        })
+          },
+          { label: "Adult" }
+        )
       }
     }),
     gallery: singleton({
@@ -119,9 +119,8 @@ export default config({
       format: { data: "json" },
       schema: {
         photos: fields.array(
-          fields.object({
-            label: "Photo",
-            fields: {
+          fields.object(
+            {
               image: fields.image({
                 label: "Image",
                 directory: "public/assets/uploads",
@@ -132,18 +131,19 @@ export default config({
                 label: "Caption",
                 validation: { isRequired: false }
               })
-            }
-          }),
+            },
+            { label: "Photo" }
+          ),
           { label: "Photos" }
         ),
         videos: fields.array(
-          fields.object({
-            label: "Video",
-            fields: {
+          fields.object(
+            {
               title: fields.text({ label: "Title" }),
               url: fields.text({ label: "YouTube URL" })
-            }
-          }),
+            },
+            { label: "Video" }
+          ),
           { label: "Videos" }
         )
       }
