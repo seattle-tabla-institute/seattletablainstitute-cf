@@ -112,6 +112,10 @@ const createEventCard = (event) => {
   const image = event.image
     ? `<img src="${encodeURI(event.image)}" alt="${event.title || "Event image"}" loading="lazy" decoding="async" />`
     : "";
+  const ticketsUrl = event.ticketsUrl ? encodeURI(event.ticketsUrl) : "";
+  const tickets = ticketsUrl
+    ? `<a class="button ghost" href="${ticketsUrl}" target="_blank" rel="noopener">Tickets</a>`
+    : "";
   const details = event.body
     ? `<details class="event-body"><summary>View event details</summary>${event.body}</details>`
     : `<a class="button ghost" href="contact.html">View event details</a>`;
@@ -123,6 +127,7 @@ const createEventCard = (event) => {
       ${meta}
       ${summary}
       ${details}
+      ${tickets}
     </div>
   `;
   return card;

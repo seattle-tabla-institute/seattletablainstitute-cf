@@ -102,6 +102,7 @@ const loadEvents = () => {
       featured: Boolean(data.featured),
       summary: data.summary || "",
       image: data.image || "",
+      ticketsUrl: data.tickets_url || "",
       body: content.trim() ? marked.parse(content.trim()) : ""
     };
   });
