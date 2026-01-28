@@ -1,35 +1,31 @@
 # Seattle Tabla Institute Website
 
 ## Summary
-Static, mobile-first website for Seattle Tabla Institute (STI) with a lightweight
-CMS (Decap CMS) for non-developer updates. Content for events, classes, and the
-media gallery is managed via Markdown and JSON files in the repo and deployed
-on Netlify.
+Static, mobile-first website for Seattle Tabla Institute (STI) with Astro +
+Keystatic for non-developer updates. Content for events, classes, and the media
+gallery is managed via Markdown and JSON files in the repo and deployed on
+Cloudflare Pages.
 
 ## Overview
-- Static HTML/CSS/JS site with fast load times and mobile-friendly layouts.
-- Decap CMS (Netlify CMS) enables non-developers to update:
+- Astro-powered static site with fast load times and mobile-friendly layouts.
+- Keystatic CMS enables non-developers to update:
   - Events (Markdown)
   - Class schedules/pricing (JSON)
   - Gallery photos and YouTube links (JSON)
-- Netlify build script compiles event Markdown into `data/events.json`.
-- Netlify Identity + Git Gateway handle editor authentication and commits.
+- Build script compiles event Markdown into `public/data/events.json`.
+- Cloudflare Pages runs `npm run build` on deploy.
 
 ## Architecture
 ```mermaid
 flowchart LR
-  Editor[Editor via /admin] --> Google[Google Sign-in]
-  Google --> Auth0[Auth0 Tenant]
-  Auth0 --> Functions[Netlify Functions Auth]
-  Functions --> Token[GitHub Token]
-  Token --> Repo[Git Repository]
-  Repo --> Build[Netlify Build: npm run build]
+  Editor[Editor via /keystatic] --> Repo[Git Repository]
+  Repo --> Build[Cloudflare Pages Build: npm run build]
   Build --> Static[Static Site Output]
 
   Repo --> EventsMD[content/events/*.md]
-  Repo --> ClassesJSON[data/classes.json]
-  Repo --> GalleryJSON[data/gallery.json]
-  Build --> EventsJSON[data/events.json]
+  Repo --> ClassesJSON[public/data/classes.json]
+  Repo --> GalleryJSON[public/data/gallery.json]
+  Build --> EventsJSON[public/data/events.json]
   Static --> Browser[Site Visitors]
   Browser --> DataFetch[Fetch JSON data files]
 ```
@@ -47,30 +43,38 @@ npm run build
 
 Preview locally:
 ```bash
-python3 -m http.server
+npm run dev
 ```
-Open `http://localhost:8000`.
+Open `http://localhost:4321`.
+
+Build preview:
+```bash
+npm run preview
+```
 
 ## Content Locations
 - Events (Markdown): `content/events/`
-- Events output (JSON): `data/events.json` (generated)
-- Class data (JSON): `data/classes.json`
-- Gallery data (JSON): `data/gallery.json`
-- CMS config: `admin/config.yml`
-- CMS entry: `admin/index.html`
+- Events output (JSON): `public/data/events.json` (generated)
+- Class data (JSON): `public/data/classes.json`
+- Gallery data (JSON): `public/data/gallery.json`
+- CMS entry: `/keystatic`
 
-## Netlify CMS Setup
-This project uses Auth0 (Google sign-in) + Netlify Functions for CMS auth.
+## Cloudflare Pages Deployment
+Project name: `seattle-tabla-institute`
 
-1) Create an Auth0 Regular Web App and enable Google as a social connection.
-2) Set Auth0 callbacks:
-   - `https://<your-site>.netlify.app/.netlify/functions/auth-callback`
-   - `http://localhost:8000/.netlify/functions/auth-callback`
-3) Set Auth0 web origins and logout URLs:
-   - `https://<your-site>.netlify.app`
-   - `http://localhost:8000`
-4) Add Netlify environment variables (see `.env.example`).
-5) Deploy and log in at `/admin/` with Google.
+Build settings:
+- Build command: `npm run build`
+- Output directory: `dist`
+- KV binding: `SESSION`
+
+Environment variables:
+- Set these in Cloudflare Pages:
+  - `KEYSTATIC_GITHUB_CLIENT_ID`
+  - `KEYSTATIC_GITHUB_CLIENT_SECRET`
+  - `KEYSTATIC_SECRET`
+  - `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`
+- If you already have a Keystatic GitHub App, install it on this repo and reuse
+  the same client ID/secret and app slug.
 
 ## Notes
 - Update PayPal links when ready.

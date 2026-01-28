@@ -5,7 +5,7 @@ const { marked } = require("marked");
 
 const rootDir = path.join(__dirname, "..");
 const eventsDir = path.join(rootDir, "content", "events");
-const dataDir = path.join(rootDir, "data");
+const dataDir = path.join(rootDir, "public", "data");
 
 const parseDate = (value) => {
   if (value instanceof Date) {
