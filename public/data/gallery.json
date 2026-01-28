@@ -1,19 +1,19 @@
 {
   "photos": [
     {
-      "image": "/assets/uploads/placeholder-photo-1.svg",
-      "alt": "Tabla class in session",
-      "caption": "Youth class in session"
+      "image": "/assets/uploads/photos/0/image.jpeg",
+      "alt": "Alam Khan - Sarod",
+      "caption": "Alam Khan - Sarod"
     },
     {
-      "image": "/assets/uploads/placeholder-photo-2.svg",
-      "alt": "Adult tabla workshop",
-      "caption": "Adult workshop with guest artist"
+      "image": "/assets/uploads/photos/1/image.jpeg",
+      "alt": "Ravi Albright - Pandit Kushal Das",
+      "caption": "Ravi Albright - Pandit Kushal Das"
     },
     {
-      "image": "/assets/uploads/placeholder-photo-3.svg",
-      "alt": "Community recital performance",
-      "caption": "Community recital performance"
+      "image": "/assets/uploads/photos/2/image.jpeg",
+      "alt": "Jam Session - April 15, 2025",
+      "caption": "Jam Session - April 15, 2025"
     }
   ],
   "videos": [
