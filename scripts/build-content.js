@@ -53,6 +53,13 @@ const toTimeLabel = (startTime, endTime) => {
   return "";
 };
 
+const titleFromSlug = (slug) =>
+  slug
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (match) => match.toUpperCase());
+
 const loadEvents = () => {
   if (!fs.existsSync(eventsDir)) {
     return [];
@@ -65,9 +72,11 @@ const loadEvents = () => {
     const dateValue = toDateValue(data.date);
     const startTime = data.start_time || "";
     const endTime = data.end_time || "";
+    const slug = path.basename(file, ".md");
+    const fallbackTitle = titleFromSlug(slug);
     return {
-      slug: path.basename(file, ".md"),
-      title: data.title || "Untitled Event",
+      slug,
+      title: data.title || data.name || fallbackTitle || "Untitled Event",
       date: dateValue,
       dateLabel: toDateLabel(dateValue),
       startTime,
