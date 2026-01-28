@@ -1,0 +1,29 @@
+{
+  "photos": [
+    {
+      "image": "/assets/uploads/placeholder-photo-1.svg",
+      "alt": "Tabla class in session",
+      "caption": "Youth class in session"
+    },
+    {
+      "image": "/assets/uploads/placeholder-photo-2.svg",
+      "alt": "Adult tabla workshop",
+      "caption": "Adult workshop with guest artist"
+    },
+    {
+      "image": "/assets/uploads/placeholder-photo-3.svg",
+      "alt": "Community recital performance",
+      "caption": "Community recital performance"
+    }
+  ],
+  "videos": [
+    {
+      "title": "STI student recital highlights",
+      "url": "https://www.youtube.com/watch?v=example1"
+    },
+    {
+      "title": "Guest artist collaboration",
+      "url": "https://www.youtube.com/watch?v=example2"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "youth": {
+    "highlights": [
+      "Focused learning and regular practice",
+      "Classical technique and rhythmic vocabulary",
+      "Annual youth recital and exams"
+    ],
+    "locations": ["Seattle", "Bellevue", "Redmond", "Online"],
+    "schedule_note": "Weekly cohorts meet year-round with seasonal breaks. New students can join with an intro pack.",
+    "pricing": [
+      { "label": "Intro pack (2 classes)", "price": "$TBD", "notes": "Placeholder" },
+      { "label": "Semester pack (15 classes)", "price": "$TBD", "notes": "Placeholder" },
+      { "label": "Scholarships", "price": "Details coming soon", "notes": "" }
+    ]
+  },
+  "adult": {
+    "highlights": [
+      "Foundational technique to advanced accompaniment",
+      "Weekly skill-building cohorts",
+      "Performance opportunities"
+    ],
+    "locations": ["Seattle", "Redmond", "Online"],
+    "schedule_note": "Adults can start with an intro pack or join an ongoing cohort if they have prior training.",
+    "pricing": [
+      { "label": "Intro pack (2 classes)", "price": "$TBD", "notes": "Placeholder" },
+      { "label": "6-class series", "price": "$TBD", "notes": "Placeholder" },
+      { "label": "10-class series", "price": "$TBD", "notes": "Placeholder" }
+    ]
+  }
+}

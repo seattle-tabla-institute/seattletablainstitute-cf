@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact | Seattle Tabla Institute</title>
+    <meta
+      name="description"
+      content="Contact Seattle Tabla Institute for class enrollment, event collaboration, and community partnerships."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap"
+      />
+    </noscript>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header>
+      <div class="nav-wrap">
+        <a class="logo" href="index.html">Seattle Tabla Institute</a>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false">
+          Menu
+        </button>
+        <nav class="nav-links" data-nav-links>
+          <a href="programs.html">Programs</a>
+          <a href="events.html">Events</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="about.html">About</a>
+          <a href="policies.html">Policies</a>
+          <a href="contact.html" class="nav-cta" aria-current="page">Join a Class</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="site-shell">
+      <section class="page-hero reveal">
+        <p class="eyebrow">Contact</p>
+        <h1>Connect with STI.</h1>
+        <p>
+          Tell us about the student, your location, and your schedule. We will
+          follow up with class options and next steps.
+        </p>
+      </section>
+
+      <section class="section reveal">
+        <div class="split">
+          <div class="card">
+            <h2>Send an inquiry</h2>
+            <form class="form" name="sti-contact" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="sti-contact" />
+              <div>
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+              <div>
+                <label for="interest">I am interested in</label>
+                <select id="interest" name="interest" required>
+                  <option value="">Select one</option>
+                  <option value="youth-classes">Youth classes</option>
+                  <option value="adult-classes">Adult classes</option>
+                  <option value="events">Events or collaborations</option>
+                  <option value="general">General inquiry</option>
+                </select>
+              </div>
+              <div>
+                <label for="message">Message</label>
+                <textarea id="message" name="message"></textarea>
+              </div>
+              <button class="button primary" type="submit">Send message</button>
+            </form>
+            <p class="note">
+              This form is configured for Netlify. We will respond within a few
+              business days.
+            </p>
+          </div>
+          <div class="card">
+            <h2>Contact details</h2>
+            <p><strong>Email:</strong> info@seattletablainstitute.org</p>
+            <p><strong>Phone:</strong> 206-423-3737</p>
+            <p><strong>Mailing address:</strong> Seattle, WA</p>
+            <h3>Teaching locations</h3>
+            <ul class="list">
+              <li>Seattle</li>
+              <li>Bellevue</li>
+              <li>Redmond</li>
+              <li>Issaquah</li>
+            </ul>
+            <div class="callout">
+              <p>
+                Current students can access the student portal while the new
+                site is in progress.
+              </p>
+              <a
+                class="button secondary"
+                href="https://seattletablainstitute.org/student-portal.php"
+                target="_blank"
+                rel="noopener"
+              >
+                Student portal
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <h3>Seattle Tabla Institute</h3>
+          <p>501(c)(3) nonprofit music education.</p>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p>info@seattletablainstitute.org</p>
+          <p>Seattle, Bellevue, Redmond, Issaquah</p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <p><a href="programs.html">Programs</a></p>
+          <p><a href="events.html">Events</a></p>
+          <p><a href="gallery.html">Gallery</a></p>
+          <p><a href="about.html">About STI</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/scripts.js" defer></script>
+    <script src="assets/content.js" defer></script>
+    <script src="assets/analytics.js" defer></script>
+  </body>
+</html>

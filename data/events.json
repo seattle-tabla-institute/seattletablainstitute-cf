@@ -1,0 +1,31 @@
+{
+  "upcoming": [
+    {
+      "slug": "2025-06-10-recital-in-the-park",
+      "title": "Recital in the Park",
+      "date": "2025-06-10",
+      "dateLabel": "Jun 10, 2025",
+      "status": "upcoming",
+      "category": "Community recital",
+      "location": "Seattle (TBD)",
+      "featured": true,
+      "summary": "A family-friendly recital celebrating youth and adult student progress.",
+      "image": "/assets/uploads/placeholder-photo-3.svg",
+      "body": "<p>Join STI students for a community recital in a local Seattle park. The program\ncelebrates youth and adult students and includes short introductions to rhythm\nand tala for new audiences.</p>\n"
+    },
+    {
+      "slug": "2025-07-20-guest-artist-collaboration",
+      "title": "Guest Artist Collaboration",
+      "date": "2025-07-20",
+      "dateLabel": "Jul 20, 2025",
+      "status": "upcoming",
+      "category": "Guest artist",
+      "location": "Bellevue (TBD)",
+      "featured": false,
+      "summary": "Collaborative performance with sitar and sarangi artists, plus Q&A.",
+      "image": "/assets/uploads/placeholder-photo-2.svg",
+      "body": "<p>STI welcomes guest artists for an evening of Hindustani classical music,\nincluding sitar and sarangi performances alongside tabla. The event includes a\nshort educational segment and audience Q&amp;A.</p>\n"
+    }
+  ],
+  "past": []
+}
