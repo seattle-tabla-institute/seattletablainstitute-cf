@@ -30,7 +30,10 @@
         href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap"
       />
     </noscript>
-    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="preload" href="assets/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="assets/styles.css" />
+    </noscript>
     <script src="assets/site-config.js"></script>
   </head>
   <body>

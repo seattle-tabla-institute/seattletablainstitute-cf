@@ -110,7 +110,7 @@ const createEventCard = (event) => {
     "Join us for an intimate community gathering featuring live tabla and Hindustani music.";
   const summary = `<p>${summaryText}</p>`;
   const image = event.image
-    ? `<img src="${encodeURI(event.image)}" alt="${event.title || "Event image"}" loading="lazy" decoding="async" />`
+    ? `<img src="${encodeURI(event.image)}" alt="${event.title || "Event image"}" loading="lazy" decoding="async" width="440" height="320" />`
     : "";
   const ticketsUrl = event.ticketsUrl ? encodeURI(event.ticketsUrl) : "";
   const tickets = ticketsUrl
@@ -185,7 +185,7 @@ const renderHomeEvent = async () => {
     event.summary ||
     "Join us for an intimate community gathering featuring live tabla and Hindustani music.";
   const image = event.image
-    ? `<img class="event-thumb" src="${encodeURI(event.image)}" alt="${event.title || "Event image"}" loading="lazy" decoding="async" />`
+    ? `<img class="event-thumb" src="${encodeURI(event.image)}" alt="${event.title || "Event image"}" loading="lazy" decoding="async" width="720" height="405" />`
     : "";
 
   homeCard.innerHTML = `
@@ -230,7 +230,7 @@ const renderGallery = async () => {
       const card = document.createElement("div");
       card.className = "media-card";
       card.innerHTML = `
-        <img src="${encodeURI(photo.image)}" alt="${photo.alt || "STI gallery"}" loading="lazy" decoding="async" />
+        <img src="${encodeURI(photo.image)}" alt="${photo.alt || "STI gallery"}" loading="lazy" decoding="async" width="640" height="480" />
         ${photo.caption ? `<p class="media-caption">${photo.caption}</p>` : ""}
       `;
       photoGrid.appendChild(card);
