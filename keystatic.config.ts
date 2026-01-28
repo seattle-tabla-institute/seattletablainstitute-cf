@@ -121,6 +121,7 @@ export default config({
       label: "Gallery",
       path: "public/data/gallery",
       format: { data: "json" },
+      previewUrl: "/gallery.html",
       schema: {
         photos: fields.array(
           fields.object(
@@ -128,27 +129,44 @@ export default config({
               image: fields.image({
                 label: "Image",
                 directory: "public/assets/uploads",
-                publicPath: "/assets/uploads"
+                publicPath: "/assets/uploads",
+                description: "Upload a landscape photo for best results."
               }),
-              alt: fields.text({ label: "Alt text" }),
+              alt: fields.text({
+                label: "Alt text",
+                description: "Short description for accessibility."
+              }),
               caption: fields.text({
                 label: "Caption",
-                validation: { isRequired: false }
+                validation: { isRequired: false },
+                description: "Optional short caption shown below the photo."
               })
             },
             { label: "Photo" }
           ),
-          { label: "Photos" }
+          {
+            label: "Photos",
+            itemLabel: (item) =>
+              item.fields.caption.value ||
+              item.fields.alt.value ||
+              "Photo"
+          }
         ),
         videos: fields.array(
           fields.object(
             {
               title: fields.text({ label: "Title" }),
-              url: fields.text({ label: "YouTube URL" })
+              url: fields.url({
+                label: "YouTube URL",
+                description: "Paste the full YouTube link."
+              })
             },
             { label: "Video" }
           ),
-          { label: "Videos" }
+          {
+            label: "Videos",
+            itemLabel: (item) => item.fields.title.value || "Video"
+          }
         )
       }
     })
