@@ -109,7 +109,7 @@ const createEventCard = (event) => {
     "Join us for an intimate community gathering featuring live tabla and Hindustani music.";
   const summary = `<p>${summaryText}</p>`;
   const image = event.image
-    ? `<img src="${event.image}" alt="${event.title || "Event image"}" />`
+    ? `<img src="${event.image}" alt="${event.title || "Event image"}" loading="lazy" decoding="async" />`
     : "";
   const details = event.body
     ? `<details class="event-body"><summary>View event details</summary>${event.body}</details>`
