@@ -19,8 +19,8 @@
   --text-sm: 0.95rem;
   --text-md: 1.05rem;
   --text-lg: 1.25rem;
-  --text-xl: clamp(1.6rem, 2.6vw, 2.3rem);
-  --text-xxl: clamp(2.1rem, 3.2vw, 3.1rem);
+  --text-xl: clamp(1.45rem, 2.1vw, 2rem);
+  --text-xxl: clamp(1.85rem, 2.8vw, 2.6rem);
   --leading: 1.6;
 }
 
@@ -182,7 +182,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 p,
@@ -467,9 +467,12 @@ details[open] summary {
 .event-card img {
   border-radius: var(--radius-sm);
   margin: 0;
-  width: 140px;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  width: 220px;
+  height: 160px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid rgba(28, 27, 25, 0.08);
+  padding: 8px;
 }
 
 .event-card .event-content {
@@ -477,15 +480,30 @@ details[open] summary {
 }
 
 .event-card h3 {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .event-thumb {
   width: 100%;
-  height: 140px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid rgba(28, 27, 25, 0.08);
+  padding: 6px;
   border-radius: var(--radius-sm);
   margin: 10px 0 12px;
+}
+
+@media (max-width: 720px) {
+  .event-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .event-card img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .page-hero {
