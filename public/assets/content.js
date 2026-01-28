@@ -100,7 +100,8 @@ const renderClasses = async () => {
 
 const createEventCard = (event) => {
   const card = document.createElement("article");
-  card.className = "card event-card";
+  const hasImage = Boolean(event.image);
+  card.className = `card event-card${hasImage ? " has-image" : ""}`;
   const category = event.category ? `<p class="pill">${event.category}</p>` : "";
   const metaParts = [event.dateLabel, event.timeLabel, event.location || "Location TBA"].filter(Boolean);
   const meta = metaParts.length ? `<p class="event-meta">${metaParts.join(" · ")}</p>` : "";
@@ -115,12 +116,14 @@ const createEventCard = (event) => {
     ? `<details class="event-body"><summary>View event details</summary>${event.body}</details>`
     : `<a class="button ghost" href="contact.html">View event details</a>`;
   card.innerHTML = `
-    ${category}
     ${image}
-    <h3>${event.title || "Event"}</h3>
-    ${meta}
-    ${summary}
-    ${details}
+    <div class="event-content">
+      ${category}
+      <h3>${event.title || "Event"}</h3>
+      ${meta}
+      ${summary}
+      ${details}
+    </div>
   `;
   return card;
 };
@@ -176,9 +179,13 @@ const renderHomeEvent = async () => {
   const summaryText =
     event.summary ||
     "Join us for an intimate community gathering featuring live tabla and Hindustani music.";
+  const image = event.image
+    ? `<img class="event-thumb" src="${encodeURI(event.image)}" alt="${event.title || "Event image"}" loading="lazy" decoding="async" />`
+    : "";
 
   homeCard.innerHTML = `
     <p class="pill">Upcoming event</p>
+    ${image}
     <h2>${event.title || "Upcoming event"}</h2>
     ${meta}
     <p>${summaryText}</p>

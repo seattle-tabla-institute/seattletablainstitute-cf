@@ -19,8 +19,8 @@
   --text-sm: 0.95rem;
   --text-md: 1.05rem;
   --text-lg: 1.25rem;
-  --text-xl: clamp(1.8rem, 3vw, 2.6rem);
-  --text-xxl: clamp(2.4rem, 4vw, 3.6rem);
+  --text-xl: clamp(1.6rem, 2.6vw, 2.3rem);
+  --text-xxl: clamp(2.1rem, 3.2vw, 3.1rem);
   --leading: 1.6;
 }
 
@@ -182,7 +182,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.35rem;
+  font-size: 1.2rem;
 }
 
 p,
@@ -285,8 +285,8 @@ summary {
 }
 
 .events-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 18px;
 }
 
 .card {
@@ -454,12 +454,38 @@ details[open] summary {
   font-size: var(--text-sm);
 }
 
+.event-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.event-card.has-image {
+  align-items: center;
+}
+
 .event-card img {
   border-radius: var(--radius-sm);
-  margin: 10px 0 12px;
-  width: 100%;
+  margin: 0;
+  width: 140px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+.event-card .event-content {
+  flex: 1;
+}
+
+.event-card h3 {
+  font-size: 1.1rem;
+}
+
+.event-thumb {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin: 10px 0 12px;
 }
 
 .page-hero {
