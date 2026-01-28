@@ -41,6 +41,10 @@ export default config({
           publicPath: "/assets/uploads",
           validation: { isRequired: false }
         }),
+        tickets_url: fields.url({
+          label: "Tickets link",
+          validation: { isRequired: false }
+        }),
         body: fields.markdoc({ label: "Details", extension: "md" })
       }
     })
