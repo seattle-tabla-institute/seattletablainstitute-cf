@@ -15,6 +15,14 @@ export default config({
       schema: {
         title: fields.text({ label: "Title" }),
         date: fields.date({ label: "Date" }),
+        start_time: fields.text({
+          label: "Start time",
+          validation: { isRequired: false }
+        }),
+        end_time: fields.text({
+          label: "End time",
+          validation: { isRequired: false }
+        }),
         status: fields.select({
           label: "Status",
           options: [

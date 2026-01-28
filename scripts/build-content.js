@@ -40,6 +40,19 @@ const toDateLabel = (value) => {
   });
 };
 
+const toTimeLabel = (startTime, endTime) => {
+  if (startTime && endTime) {
+    return `${startTime}–${endTime}`;
+  }
+  if (startTime) {
+    return startTime;
+  }
+  if (endTime) {
+    return `Ends ${endTime}`;
+  }
+  return "";
+};
+
 const loadEvents = () => {
   if (!fs.existsSync(eventsDir)) {
     return [];
@@ -50,11 +63,16 @@ const loadEvents = () => {
     const raw = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(raw);
     const dateValue = toDateValue(data.date);
+    const startTime = data.start_time || "";
+    const endTime = data.end_time || "";
     return {
       slug: path.basename(file, ".md"),
       title: data.title || "Untitled Event",
       date: dateValue,
       dateLabel: toDateLabel(dateValue),
+      startTime,
+      endTime,
+      timeLabel: toTimeLabel(startTime, endTime),
       status: data.status || "upcoming",
       category: data.category || "",
       location: data.location || "",
