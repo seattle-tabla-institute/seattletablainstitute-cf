@@ -31,3 +31,24 @@ if (revealElements.length) {
 
   revealElements.forEach((element) => revealObserver.observe(element));
 }
+
+const applyCanonical = () => {
+  const config = window.SITE_CONFIG;
+  if (!config || !config.CANONICAL_ORIGIN) {
+    return;
+  }
+
+  const origin = config.CANONICAL_ORIGIN.replace(/\/$/, "");
+  const path = window.location.pathname.replace(/index\.html$/, "").replace(/\/$/, "");
+  const canonicalUrl = `${origin}${path || "/"}`;
+
+  document.querySelectorAll("[data-canonical]").forEach((node) => {
+    node.setAttribute("href", canonicalUrl);
+  });
+
+  document.querySelectorAll("[data-og-url]").forEach((node) => {
+    node.setAttribute("content", canonicalUrl);
+  });
+};
+
+applyCanonical();
