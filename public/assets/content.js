@@ -102,7 +102,7 @@ const createEventCard = (event) => {
   const card = document.createElement("article");
   card.className = "card event-card";
   const category = event.category ? `<p class="pill">${event.category}</p>` : "";
-  const metaParts = [event.dateLabel, event.location].filter(Boolean);
+  const metaParts = [event.dateLabel, event.timeLabel, event.location].filter(Boolean);
   const meta = metaParts.length ? `<p class="event-meta">${metaParts.join(" | ")}</p>` : "";
   const summary = event.summary ? `<p>${event.summary}</p>` : "";
   const image = event.image
