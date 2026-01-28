@@ -40,6 +40,19 @@ const toDateLabel = (value) => {
   });
 };
 
+const getEventStatus = (dateValue) => {
+  if (!dateValue) {
+    return "upcoming";
+  }
+  const date = parseDate(dateValue);
+  if (Number.isNaN(date.getTime())) {
+    return "upcoming";
+  }
+  const today = new Date();
+  const utcToday = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
+  return date < utcToday ? "past" : "upcoming";
+};
+
 const toTimeLabel = (startTime, endTime) => {
   if (startTime && endTime) {
     return `${startTime}–${endTime}`;
@@ -74,6 +87,7 @@ const loadEvents = () => {
     const endTime = data.end_time || "";
     const slug = path.basename(file, ".md");
     const fallbackTitle = titleFromSlug(slug);
+    const status = getEventStatus(dateValue);
     return {
       slug,
       title: data.title || data.name || fallbackTitle || "Untitled Event",
@@ -82,7 +96,7 @@ const loadEvents = () => {
       startTime,
       endTime,
       timeLabel: toTimeLabel(startTime, endTime),
-      status: data.status || "upcoming",
+      status,
       category: data.category || "",
       location: data.location || "",
       featured: Boolean(data.featured),
