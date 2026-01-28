@@ -1,4 +1,4 @@
-const ANALYTICS_ENDPOINT = "/.netlify/functions/analytics";
+const ANALYTICS_ENDPOINT = "/analytics";
 const ANALYTICS_DEBUG = document.documentElement.dataset.analyticsDebug === "true";
 
 const buildContext = () => ({
