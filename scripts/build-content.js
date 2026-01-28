@@ -40,6 +40,13 @@ const toDateLabel = (value) => {
   });
 };
 
+const titleFromSlug = (slug) =>
+  slug
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (match) => match.toUpperCase());
+
 const loadEvents = () => {
   if (!fs.existsSync(eventsDir)) {
     return [];
@@ -50,9 +57,11 @@ const loadEvents = () => {
     const raw = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(raw);
     const dateValue = toDateValue(data.date);
+    const slug = path.basename(file, ".md");
+    const fallbackTitle = titleFromSlug(slug);
     return {
-      slug: path.basename(file, ".md"),
-      title: data.title || "Untitled Event",
+      slug,
+      title: data.title || data.name || fallbackTitle || "Untitled Event",
       date: dateValue,
       dateLabel: toDateLabel(dateValue),
       status: data.status || "upcoming",

@@ -13,7 +13,7 @@ export default config({
       slugField: "title",
       entryLayout: "content",
       schema: {
-        title: fields.text({ label: "Title" }),
+        title: fields.text({ label: "Title", validation: { isRequired: true } }),
         date: fields.date({ label: "Date" }),
         status: fields.select({
           label: "Status",
