@@ -6,23 +6,32 @@
     <title>Programs | Seattle Tabla Institute</title>
     <meta
       name="description"
-      content="Explore youth and adult tabla programs at Seattle Tabla Institute, including hybrid options and performance opportunities."
+      content="Youth and adult tabla programs with structured instruction, clear progression, and community-focused learning."
     />
+    <meta property="og:title" content="Programs | Seattle Tabla Institute" />
+    <meta
+      property="og:description"
+      content="Youth and adult tabla programs with structured instruction, clear progression, and community-focused learning."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" data-og-url content="" />
+    <link rel="canonical" data-canonical href="" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap"
       />
     </noscript>
     <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/site-config.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -38,7 +47,8 @@
           <a href="gallery.html">Gallery</a>
           <a href="about.html">About</a>
           <a href="policies.html">Policies</a>
-          <a href="contact.html" class="nav-cta">Join a Class</a>
+          <a href="contact.html">Contact</a>
+          <a href="join.html" class="nav-cta">Join a Class</a>
         </nav>
       </div>
     </header>
@@ -46,82 +56,90 @@
     <main id="main" class="site-shell">
       <section class="page-hero reveal">
         <p class="eyebrow">Programs</p>
-        <h1>Structured tabla training for every stage.</h1>
+        <h1>Structured tabla learning for youth and adults.</h1>
         <p>
-          STI offers year-round classes for youth and adults, with in-person and
-          online options. We focus on strong fundamentals, rhythmic clarity, and
-          supportive community performance.
+          Programs are designed for steady progress, cultural depth, and a supportive community.
+          We place students in cohorts that match their goals and experience.
         </p>
       </section>
 
-      <section id="youth" class="section reveal">
+      <section class="section reveal" id="adult">
         <div class="section-title">
-          <h2>Youth programs (ages 5-18)</h2>
-          <span class="badge">Beginner to advanced</span>
+          <h2>Adult Tabla Classes (19+)</h2>
+          <p class="meta">Welcoming, structured, and beginner-friendly</p>
         </div>
         <div class="split">
+          <div>
+            <p>
+              Learn tabla in a supportive, structured environment designed for adult learners. No
+              prior music experience is required—just curiosity and commitment.
+            </p>
+            <ul class="list" id="adult-highlights"></ul>
+            <div class="info-row" id="adult-locations"></div>
+            <p class="note" id="adult-schedule"></p>
+            <div class="button-row">
+              <a class="button primary" href="join.html">Enroll in adult classes</a>
+              <a class="button secondary" href="contact.html">Ask a question</a>
+            </div>
+          </div>
           <div class="card">
-            <h3>What students build</h3>
-            <ul class="list" id="youth-highlights"></ul>
+            <h3>Pricing</h3>
+            <div class="price-grid" id="adult-pricing"></div>
             <p class="note">
-              Hybrid tracks available for families balancing schedules.
+              Pricing is confirmed during enrollment based on cohort format.
             </p>
           </div>
-          <div class="card">
-            <h3>Locations and schedule</h3>
-            <div class="info-row" id="youth-locations"></div>
-            <p id="youth-schedule"></p>
-            <div class="button-row">
-              <a class="button secondary" href="contact.html">Request schedule</a>
-            </div>
-          </div>
         </div>
-        <div class="price-grid" id="youth-pricing"></div>
       </section>
 
-      <section id="adult" class="section reveal">
+      <section class="section reveal" id="youth">
         <div class="section-title">
-          <h2>Adult programs (ages 19+)</h2>
-          <span class="badge">Intro and ongoing cohorts</span>
+          <h2>Youth Tabla Classes (Ages 5–18)</h2>
+          <p class="meta">Age-appropriate, consistent, and culturally rooted</p>
         </div>
         <div class="split">
-          <div class="card">
-            <h3>Class experience</h3>
-            <ul class="list" id="adult-highlights"></ul>
-          </div>
-          <div class="card">
-            <h3>Locations and schedule</h3>
-            <div class="info-row" id="adult-locations"></div>
-            <p id="adult-schedule"></p>
+          <div>
+            <p>
+              Our youth program introduces children to tabla through age-appropriate, structured
+              lessons that build focus, rhythm, and confidence. Instruction emphasizes cultural
+              context, consistency, and a positive learning environment.
+            </p>
+            <ul class="list" id="youth-highlights"></ul>
+            <div class="info-row" id="youth-locations"></div>
+            <p class="note" id="youth-schedule"></p>
             <div class="button-row">
-              <a class="button secondary" href="contact.html">Start with an intro pack</a>
+              <a class="button primary" href="join.html">Enroll in youth classes</a>
+              <a class="button secondary" href="contact.html">Ask a question</a>
             </div>
           </div>
+          <div class="card">
+            <h3>Pricing</h3>
+            <div class="price-grid" id="youth-pricing"></div>
+            <p class="note">
+              We will confirm placement and schedule before final enrollment.
+            </p>
+          </div>
         </div>
-        <div class="price-grid" id="adult-pricing"></div>
       </section>
 
       <section class="section reveal">
         <div class="section-accent">
           <div class="split">
             <div>
-              <h2>Need help finding a tabla set?</h2>
-              <p>
-                We can help new students source instruments or connect with
-                community members who are donating sets for youth classes.
-              </p>
+              <h2>Program expectations</h2>
+              <ul class="list">
+                <li>Consistent practice and attendance</li>
+                <li>Respectful, inclusive learning environment</li>
+                <li>Clear feedback and progression milestones</li>
+              </ul>
             </div>
             <div>
-              <h3>Enrollment steps</h3>
-              <ol class="list">
-                <li>Tell us about the student and availability.</li>
-                <li>We recommend a cohort and share schedule details.</li>
-                <li>Complete payment via PayPal link (coming soon).</li>
-              </ol>
-              <div class="button-row">
-                <a class="button primary" href="contact.html">Enroll now</a>
-                <a class="button secondary" href="contact.html">Ask a question</a>
-              </div>
+              <h2>Ready to get started?</h2>
+              <p>
+                Share your goals and availability. We will recommend the right cohort and next
+                steps.
+              </p>
+              <a class="button primary" href="join.html">Join a class</a>
             </div>
           </div>
         </div>
@@ -133,18 +151,21 @@
         <div>
           <h3>Seattle Tabla Institute</h3>
           <p>501(c)(3) nonprofit music education.</p>
+          <p>EIN 27-2849217</p>
+          <p>Serving the Greater Seattle area.</p>
         </div>
         <div>
           <h3>Contact</h3>
-          <p>info@seattletablainstitute.org</p>
+          <p><a href="mailto:info@seattletablainstitute.org">info@seattletablainstitute.org</a></p>
           <p>Seattle, Bellevue, Redmond, Issaquah</p>
+          <p><a href="contact.html">Contact page</a></p>
         </div>
         <div>
           <h3>Explore</h3>
           <p><a href="events.html">Events</a></p>
-          <p><a href="gallery.html">Gallery</a></p>
-          <p><a href="about.html">About STI</a></p>
-          <p><a href="contact.html">Join a class</a></p>
+          <p><a href="join.html">Join a class</a></p>
+          <p><a href="about.html">About</a></p>
+          <p><a href="policies.html">Policies</a></p>
         </div>
       </div>
     </footer>
