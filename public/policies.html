@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="hybrid">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,6 +16,35 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" data-og-url content="" />
     <link rel="canonical" data-canonical href="" />
+    <script>
+      (() => {
+        const defaultTheme = "hybrid";
+        const themes = ["pacific", "warm", "hybrid"];
+        const params = new URLSearchParams(window.location.search);
+        const paramTheme = params.get("theme");
+        let storedTheme = null;
+
+        try {
+          storedTheme = window.localStorage.getItem("sti-theme");
+        } catch (error) {
+          storedTheme = null;
+        }
+
+        let theme = defaultTheme;
+        if (paramTheme && themes.includes(paramTheme)) {
+          theme = paramTheme;
+          try {
+            window.localStorage.setItem("sti-theme", theme);
+          } catch (error) {
+            // Ignore storage errors.
+          }
+        } else if (storedTheme && themes.includes(storedTheme)) {
+          theme = storedTheme;
+        }
+
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,6 +58,10 @@
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap"
       />
+    </noscript>
+    <link rel="preload" href="assets/themes.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="assets/themes.css" />
     </noscript>
     <link rel="preload" href="assets/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript>
@@ -142,8 +175,18 @@
           <p><a href="about.html">About</a></p>
         </div>
       </div>
+      <div class="theme-preview" role="group" aria-label="Theme preview">
+        <label for="theme-select">Theme</label>
+        <select id="theme-select" data-theme-select>
+          <option value="hybrid">Hybrid</option>
+          <option value="pacific">Pacific Harmony</option>
+          <option value="warm">Warm Community Calm</option>
+        </select>
+        <span class="theme-preview__current" data-theme-label>Hybrid</span>
+      </div>
     </footer>
 
+    <script src="assets/theme.js" defer></script>
     <script src="assets/scripts.js" defer></script>
     <script src="assets/analytics.js" defer></script>
   </body>
