@@ -343,6 +343,12 @@ summary {
   color: var(--text-muted);
 }
 
+.tagline {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
 .list {
   list-style: none;
   padding: 0;
