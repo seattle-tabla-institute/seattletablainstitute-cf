@@ -1,7 +1,10 @@
+import type { APIContext } from "astro";
 import Stripe from "stripe";
-import { errorResponse, jsonResponse, type Env } from "./_shared";
+import { errorResponse, getEnv, jsonResponse } from "../../../lib/stripe/server";
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+export async function POST(context: APIContext) {
+  const env = getEnv(context);
+
   if (!env.STRIPE_WEBHOOK_SECRET) {
     return errorResponse("STRIPE_WEBHOOK_SECRET is not set.", 500);
   }
@@ -10,7 +13,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     return errorResponse("STRIPE_SECRET_KEY is not set.", 500);
   }
 
-  const signature = request.headers.get("stripe-signature");
+  const signature = context.request.headers.get("stripe-signature");
   if (!signature) {
     return errorResponse("Missing Stripe signature.", 400);
   }
@@ -20,7 +23,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     httpClient: Stripe.createFetchHttpClient()
   });
 
-  const body = await request.text();
+  const body = await context.request.text();
 
   let event: Stripe.Event;
   try {
@@ -39,4 +42,4 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   }
 
   return jsonResponse({ received: true });
-};
+}

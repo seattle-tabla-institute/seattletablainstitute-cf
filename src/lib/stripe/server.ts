@@ -1,13 +1,13 @@
 import Stripe from "stripe";
+import type { APIContext } from "astro";
 
 const rateBuckets = new Map<string, { count: number; resetAt: number }>();
 
-export type Env = {
-  STRIPE_SECRET_KEY?: string;
-  STRIPE_WEBHOOK_SECRET?: string;
-  STRIPE_MODE?: string;
-  SITE_URL?: string;
-  [key: string]: string | undefined;
+export type StripeEnv = Record<string, string | undefined>;
+
+export const getEnv = (context: APIContext): StripeEnv => {
+  const runtime = (context.locals as { runtime?: { env?: StripeEnv } } | undefined)?.runtime;
+  return runtime?.env ?? {};
 };
 
 export const jsonResponse = (data: unknown, init: ResponseInit = {}) => {
@@ -33,7 +33,7 @@ export const rateLimit = (key: string, limit = 20, windowMs = 60_000) => {
   return { ok: true };
 };
 
-export const isAllowedOrigin = (origin: string | null, env: Env) => {
+export const isAllowedOrigin = (origin: string | null, env: StripeEnv) => {
   if (!origin) {
     return false;
   }
@@ -62,7 +62,7 @@ export const isAllowedOrigin = (origin: string | null, env: Env) => {
   return false;
 };
 
-export const getStripe = (env: Env) => {
+export const getStripe = (env: StripeEnv) => {
   if (!env.STRIPE_SECRET_KEY) {
     throw new Error("STRIPE_SECRET_KEY is not set.");
   }
@@ -72,7 +72,7 @@ export const getStripe = (env: Env) => {
   });
 };
 
-export const getSiteUrl = (env: Env) => {
+export const getSiteUrl = (env: StripeEnv) => {
   const site = env.SITE_URL || "";
   if (!site) {
     throw new Error("SITE_URL is not set.");

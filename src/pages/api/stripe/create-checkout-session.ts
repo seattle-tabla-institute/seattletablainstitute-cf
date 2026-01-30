@@ -1,29 +1,31 @@
-import { adultPackages, pricingMap, youthPackages, type ClassGroup, type PackageKey } from "../../../src/lib/stripe/pricing";
+import type { APIContext } from "astro";
+import { adultPackages, pricingMap, youthPackages, type ClassGroup, type PackageKey } from "../../../lib/stripe/pricing";
 import {
   errorResponse,
   getClientIp,
+  getEnv,
   getSiteUrl,
   getStripe,
   isAllowedOrigin,
   jsonResponse,
-  rateLimit,
-  type Env
-} from "./_shared";
+  rateLimit
+} from "../../../lib/stripe/server";
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
-  const origin = request.headers.get("Origin");
+export async function POST(context: APIContext) {
+  const env = getEnv(context);
+  const origin = context.request.headers.get("Origin");
   if (!isAllowedOrigin(origin, env)) {
     return errorResponse("Invalid origin.", 403);
   }
 
-  const rate = rateLimit(`checkout:${getClientIp(request)}`);
+  const rate = rateLimit(`checkout:${getClientIp(context.request)}`);
   if (!rate.ok) {
     return errorResponse("Too many requests. Please try again shortly.", 429);
   }
 
   let payload: { group?: ClassGroup; package?: PackageKey } = {};
   try {
-    payload = await request.json();
+    payload = await context.request.json();
   } catch (error) {
     return errorResponse("Invalid JSON payload.");
   }
@@ -63,7 +65,6 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       mode: "payment",
       success_url: successUrl,
       cancel_url: cancelUrl,
-      customer_email: undefined,
       line_items: priceId
         ? [{ price: priceId, quantity: 1 }]
         : [
@@ -95,4 +96,4 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     console.error("Stripe create checkout session error", error);
     return errorResponse("Unable to start checkout. Please try again.", 500);
   }
-};
+}

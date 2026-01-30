@@ -1,13 +1,14 @@
+import type { APIContext } from "astro";
 import {
   errorResponse,
   getClientIp,
+  getEnv,
   getSiteUrl,
   getStripe,
   isAllowedOrigin,
   jsonResponse,
-  rateLimit,
-  type Env
-} from "./_shared";
+  rateLimit
+} from "../../../lib/stripe/server";
 
 const parseAmount = (value: unknown) => {
   if (typeof value === "number") {
@@ -30,20 +31,21 @@ const isValidAmount = (amount: number) => {
   return Math.abs(rounded / 100 - amount) < 0.001;
 };
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
-  const origin = request.headers.get("Origin");
+export async function POST(context: APIContext) {
+  const env = getEnv(context);
+  const origin = context.request.headers.get("Origin");
   if (!isAllowedOrigin(origin, env)) {
     return errorResponse("Invalid origin.", 403);
   }
 
-  const rate = rateLimit(`donation:${getClientIp(request)}`);
+  const rate = rateLimit(`donation:${getClientIp(context.request)}`);
   if (!rate.ok) {
     return errorResponse("Too many requests. Please try again shortly.", 429);
   }
 
   let payload: { amount?: number | string } = {};
   try {
-    payload = await request.json();
+    payload = await context.request.json();
   } catch (error) {
     return errorResponse("Invalid JSON payload.");
   }
@@ -95,4 +97,4 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     console.error("Stripe create donation session error", error);
     return errorResponse("Unable to start checkout. Please try again.", 500);
   }
-};
+}
