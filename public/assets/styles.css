@@ -654,9 +654,27 @@ details[open] summary {
   cursor: pointer;
 }
 
+.lightbox-nav {
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  background: color-mix(in srgb, var(--bg-muted) 92%, var(--text));
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--text) 18%, transparent);
+}
+
+.lightbox-nav:hover,
+.lightbox-nav:focus {
+  background: var(--bg-muted);
+}
+
 .lightbox-nav:disabled {
   opacity: 0.5;
   cursor: default;
+  box-shadow: none;
 }
 
 .lightbox-stage {
@@ -668,8 +686,7 @@ details[open] summary {
 
 .lightbox-prev,
 .lightbox-next {
-  height: 40px;
-  min-width: 60px;
+  min-width: 52px;
 }
 
 .lightbox-media {
