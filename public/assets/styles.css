@@ -637,12 +637,6 @@ details[open] summary {
   margin-bottom: 12px;
 }
 
-.lightbox-actions {
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-}
-
 .lightbox-title {
   margin: 0;
   font-size: var(--text-sm);
@@ -665,7 +659,25 @@ details[open] summary {
   cursor: default;
 }
 
+.lightbox-stage {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  height: 40px;
+  min-width: 60px;
+}
+
 .lightbox-media {
+  width: 100%;
+  display: block;
+}
+
+.lightbox-media img {
   width: 100%;
   height: auto;
   border-radius: var(--radius-sm);

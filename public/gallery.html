@@ -118,17 +118,17 @@
         <div class="lightbox-card">
           <div class="lightbox-header">
             <p class="lightbox-title" data-lightbox-title>Media</p>
-            <div class="lightbox-actions">
-              <button class="lightbox-nav" type="button" data-lightbox-prev aria-label="Previous">
-                Prev
-              </button>
-              <button class="lightbox-nav" type="button" data-lightbox-next aria-label="Next">
-                Next
-              </button>
-              <button class="lightbox-close" type="button" data-lightbox-close>Close</button>
-            </div>
+            <button class="lightbox-close" type="button" data-lightbox-close>Close</button>
           </div>
-          <div data-lightbox-media></div>
+          <div class="lightbox-stage">
+            <button class="lightbox-nav lightbox-prev" type="button" data-lightbox-prev aria-label="Previous">
+              Prev
+            </button>
+            <div class="lightbox-media" data-lightbox-media></div>
+            <button class="lightbox-nav lightbox-next" type="button" data-lightbox-next aria-label="Next">
+              Next
+            </button>
+          </div>
           <p class="media-caption" data-lightbox-caption></p>
         </div>
       </dialog>
