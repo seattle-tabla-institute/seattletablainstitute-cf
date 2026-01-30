@@ -525,7 +525,7 @@ const initLightbox = () => {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
-  renderClasses();
+  await renderClasses();
   renderEvents();
   renderHomeEvent();
   await renderGallery();
