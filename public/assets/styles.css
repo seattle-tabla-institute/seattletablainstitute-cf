@@ -658,6 +658,8 @@ details[open] summary {
   height: auto;
   border-radius: var(--radius-sm);
   display: block;
+  max-height: 70vh;
+  object-fit: contain;
 }
 
 .lightbox-video {
@@ -666,6 +668,7 @@ details[open] summary {
   border-radius: var(--radius-sm);
   overflow: hidden;
   background: color-mix(in srgb, var(--text) 8%, transparent);
+  max-height: 70vh;
 }
 
 .lightbox-video iframe {
