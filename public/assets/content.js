@@ -42,10 +42,15 @@ const setPricingCards = (element, pricing) => {
   pricing.forEach((price) => {
     const card = document.createElement("div");
     card.className = "price-card";
+    const cta =
+      price.group && price.package
+        ? `<button class="button primary" data-pay data-group="${price.group}" data-package="${price.package}">Register (Test)</button>`
+        : "";
     card.innerHTML = `
       <strong>${price.label || ""}</strong>
       <p>${price.price || ""}</p>
       ${price.notes ? `<p class="note">${price.notes}</p>` : ""}
+      ${cta ? `<div class="payment-actions">${cta}</div>` : ""}
     `;
     element.appendChild(card);
   });
@@ -110,6 +115,82 @@ const renderClasses = async () => {
     }
     setPricingCards(adultPricing, data.adult.pricing || []);
   }
+};
+
+const initPaymentButtons = () => {
+  const buttons = Array.from(document.querySelectorAll("[data-pay]"));
+  if (!buttons.length) {
+    return;
+  }
+
+  const setLoading = (button, isLoading) => {
+    if (!button) return;
+    const label = button.getAttribute("data-label") || button.textContent || "";
+    if (!button.getAttribute("data-label")) {
+      button.setAttribute("data-label", label);
+    }
+    button.textContent = isLoading ? "Loading..." : label;
+    button.disabled = isLoading;
+  };
+
+  const resetButtons = () => buttons.forEach((btn) => setLoading(btn, false));
+
+  const getErrorNode = (button) => {
+    const section = button.closest(".section") || document.body;
+    return section.querySelector("[data-payment-error]");
+  };
+
+  const startCheckout = async (button) => {
+    if (!button) return;
+    const errorNode = getErrorNode(button);
+    if (errorNode) errorNode.textContent = "";
+    setLoading(button, true);
+
+    try {
+      const response = await fetch("/api/stripe/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          group: button.dataset.group,
+          package: button.dataset.package
+        })
+      });
+
+      let data = null;
+      const responseClone = response.clone();
+      const contentType = response.headers.get("content-type") || "";
+      if (contentType.includes("application/json")) {
+        try {
+          data = await response.json();
+        } catch (parseError) {
+          console.error("Checkout response JSON parse failed", { status: response.status, parseError });
+          throw new Error("Unexpected response from checkout. Try again later.");
+        }
+      } else {
+        const text = await responseClone.text();
+        console.error("Checkout response was not JSON", { status: response.status, contentType, text });
+        throw new Error("Checkout endpoint not available on this deploy. Try again later.");
+      }
+      if (!response.ok || !data?.url) {
+        console.error("Checkout error", { status: response.status, data });
+        throw new Error(data?.error || "Payments are in setup mode. Try again later.");
+      }
+
+      window.location.href = data.url;
+    } catch (error) {
+      console.error("Checkout request failed", error);
+      if (errorNode) {
+        errorNode.textContent =
+          error instanceof Error ? error.message : "Payments are in setup mode. Try again later.";
+      }
+    } finally {
+      resetButtons();
+    }
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => startCheckout(button));
+  });
 };
 
 const createEventCard = (event) => {
@@ -458,9 +539,10 @@ const initLightbox = () => {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
-  renderClasses();
+  await renderClasses();
   renderEvents();
   renderHomeEvent();
   await renderGallery();
   initLightbox();
+  initPaymentButtons();
 });

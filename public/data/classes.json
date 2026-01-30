@@ -8,8 +8,13 @@
     "locations": ["Seattle", "Bellevue", "Redmond", "Online"],
     "schedule_note": "Weekly cohorts meet year-round with seasonal breaks. New students can join with an intro pack.",
     "pricing": [
-      { "label": "Intro pack (2 classes)", "price": "$TBD", "notes": "Placeholder" },
-      { "label": "Semester pack (15 classes)", "price": "$TBD", "notes": "Placeholder" }
+      {
+        "label": "Intro pack (2 classes)",
+        "price": "$20.00",
+        "notes": "Test mode checkout",
+        "group": "youth",
+        "package": "intro_2"
+      }
     ]
   },
   "adult": {
@@ -21,9 +26,34 @@
     "locations": ["Seattle", "Redmond", "Online"],
     "schedule_note": "Adults can start with an intro pack or join an ongoing cohort if they have prior training.",
     "pricing": [
-      { "label": "Intro pack (2 classes)", "price": "$TBD", "notes": "Placeholder" },
-      { "label": "6-class series", "price": "$TBD", "notes": "Placeholder" },
-      { "label": "10-class series", "price": "$TBD", "notes": "Placeholder" }
+      {
+        "label": "Intro pack (2 classes)",
+        "price": "$40.00",
+        "notes": "Test mode checkout",
+        "group": "adult",
+        "package": "intro_2"
+      },
+      {
+        "label": "6-class series",
+        "price": "$210.00",
+        "notes": "Test mode checkout",
+        "group": "adult",
+        "package": "class_6"
+      },
+      {
+        "label": "10-class series",
+        "price": "$280.00",
+        "notes": "Test mode checkout",
+        "group": "adult",
+        "package": "class_10"
+      },
+      {
+        "label": "16-class semester",
+        "price": "$337.50",
+        "notes": "Test mode checkout",
+        "group": "adult",
+        "package": "semester_16"
+      }
     ]
   }
 }
