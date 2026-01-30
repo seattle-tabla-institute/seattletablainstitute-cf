@@ -113,6 +113,25 @@
         </div>
         <div class="gallery-grid" id="gallery-videos"></div>
       </section>
+
+      <dialog class="lightbox" data-lightbox aria-label="Media viewer">
+        <div class="lightbox-card">
+          <div class="lightbox-header">
+            <p class="lightbox-title" data-lightbox-title>Media</p>
+            <button class="lightbox-close" type="button" data-lightbox-close>Close</button>
+          </div>
+          <div class="lightbox-stage">
+            <button class="lightbox-nav lightbox-prev" type="button" data-lightbox-prev aria-label="Previous">
+              &#8592;
+            </button>
+            <div class="lightbox-media" data-lightbox-media></div>
+            <button class="lightbox-nav lightbox-next" type="button" data-lightbox-next aria-label="Next">
+              &#8594;
+            </button>
+          </div>
+          <p class="media-caption" data-lightbox-caption></p>
+        </div>
+      </dialog>
     </main>
 
     <footer>
