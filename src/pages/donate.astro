@@ -171,10 +171,12 @@ const pageDescription = "Support Seattle Tabla Institute with a test mode donati
           });
           const data = await response.json();
           if (!response.ok || !data.url) {
+            console.error("Donation error", { status: response.status, data });
             throw new Error(data.error || "Payments are in setup mode. Try again later.");
           }
           window.location.href = data.url;
         } catch (error) {
+          console.error("Donation request failed", error);
           if (errorNode) {
             errorNode.textContent =
               error instanceof Error ? error.message : "Payments are in setup mode. Try again later.";

@@ -37,14 +37,29 @@ export const isAllowedOrigin = (origin: string | null, env: Env) => {
   if (!origin) {
     return false;
   }
-  const allowed = new Set<string>();
-  const site = env.SITE_URL ? new URL(env.SITE_URL).origin : null;
-  if (site) {
-    allowed.add(site);
+  const allowedOrigins = new Set<string>();
+  const siteOrigin = env.SITE_URL ? new URL(env.SITE_URL).origin : null;
+  const siteHost = env.SITE_URL ? new URL(env.SITE_URL).hostname : null;
+  if (siteOrigin) {
+    allowedOrigins.add(siteOrigin);
   }
-  allowed.add("http://localhost:4321");
-  allowed.add("http://127.0.0.1:4321");
-  return allowed.has(origin);
+  allowedOrigins.add("http://localhost:4321");
+  allowedOrigins.add("http://127.0.0.1:4321");
+  if (allowedOrigins.has(origin)) {
+    return true;
+  }
+  try {
+    const originHost = new URL(origin).hostname;
+    if (siteHost && (originHost === siteHost || originHost.endsWith(`.${siteHost}`))) {
+      return true;
+    }
+    if (originHost.endsWith(".seattle-tabla-institute.pages.dev")) {
+      return true;
+    }
+  } catch (error) {
+    return false;
+  }
+  return false;
 };
 
 export const getStripe = (env: Env) => {

@@ -158,11 +158,13 @@ const initPaymentButtons = () => {
 
       const data = await response.json();
       if (!response.ok || !data.url) {
+        console.error("Checkout error", { status: response.status, data });
         throw new Error(data.error || "Payments are in setup mode. Try again later.");
       }
 
       window.location.href = data.url;
     } catch (error) {
+      console.error("Checkout request failed", error);
       if (errorNode) {
         errorNode.textContent =
           error instanceof Error ? error.message : "Payments are in setup mode. Try again later.";
