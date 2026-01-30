@@ -320,6 +320,14 @@ const initLightbox = () => {
   const title = dialog.querySelector("[data-lightbox-title]");
   const caption = dialog.querySelector("[data-lightbox-caption]");
   const closeButton = dialog.querySelector("[data-lightbox-close]");
+  const prevButton = dialog.querySelector("[data-lightbox-prev]");
+  const nextButton = dialog.querySelector("[data-lightbox-next]");
+  const triggers = Array.from(document.querySelectorAll("[data-lightbox-trigger]"));
+  let currentIndex = -1;
+
+  triggers.forEach((trigger, index) => {
+    trigger.dataset.lightboxIndex = String(index);
+  });
 
   const reset = () => {
     if (mediaContainer) {
@@ -330,13 +338,24 @@ const initLightbox = () => {
     }
   };
 
-  const open = (type, src, heading, text) => {
+  const updateNavState = () => {
+    if (!prevButton || !nextButton) {
+      return;
+    }
+    prevButton.disabled = currentIndex <= 0;
+    nextButton.disabled = currentIndex >= triggers.length - 1;
+  };
+
+  const open = (type, src, heading, text, index) => {
     if (!mediaContainer || !src) {
       return;
     }
     reset();
     if (title) {
       title.textContent = heading || "";
+    }
+    if (typeof index === "number") {
+      currentIndex = index;
     }
 
     if (type === "video") {
@@ -363,6 +382,21 @@ const initLightbox = () => {
     }
 
     dialog.showModal();
+    updateNavState();
+  };
+
+  const openByIndex = (index) => {
+    const trigger = triggers[index];
+    if (!trigger) {
+      return;
+    }
+    open(
+      trigger.dataset.lightboxType || "image",
+      trigger.dataset.lightboxSrc || "",
+      trigger.dataset.lightboxTitle || "",
+      trigger.dataset.lightboxCaption || "",
+      index
+    );
   };
 
   document.addEventListener("click", (event) => {
@@ -371,12 +405,45 @@ const initLightbox = () => {
       return;
     }
     event.preventDefault();
+    const index = Number(trigger.dataset.lightboxIndex || 0);
     open(
       trigger.dataset.lightboxType || "image",
       trigger.dataset.lightboxSrc || "",
       trigger.dataset.lightboxTitle || "",
-      trigger.dataset.lightboxCaption || ""
+      trigger.dataset.lightboxCaption || "",
+      index
     );
+  });
+
+  if (prevButton) {
+    prevButton.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        openByIndex(currentIndex - 1);
+      }
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", () => {
+      if (currentIndex < triggers.length - 1) {
+        openByIndex(currentIndex + 1);
+      }
+    });
+  }
+
+  dialog.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      if (currentIndex > 0) {
+        openByIndex(currentIndex - 1);
+      }
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      if (currentIndex < triggers.length - 1) {
+        openByIndex(currentIndex + 1);
+      }
+    }
   });
 
   if (closeButton) {
@@ -390,10 +457,10 @@ const initLightbox = () => {
   });
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   renderClasses();
   renderEvents();
   renderHomeEvent();
-  renderGallery();
+  await renderGallery();
   initLightbox();
 });

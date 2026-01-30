@@ -637,12 +637,19 @@ details[open] summary {
   margin-bottom: 12px;
 }
 
+.lightbox-actions {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .lightbox-title {
   margin: 0;
   font-size: var(--text-sm);
   color: var(--text-muted);
 }
 
+.lightbox-nav,
 .lightbox-close {
   border: 1px solid var(--border);
   background: var(--bg-muted);
@@ -651,6 +658,11 @@ details[open] summary {
   border-radius: 999px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.lightbox-nav:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .lightbox-media {
