@@ -1,0 +1,188 @@
+---
+const pageTitle = "Donate | Seattle Tabla Institute";
+const pageDescription = "Support Seattle Tabla Institute with a test mode donation.";
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="hybrid">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap"
+      />
+    </noscript>
+    <link rel="stylesheet" href="/assets/themes.css" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <script>
+      (() => {
+        const defaultTheme = "hybrid";
+        const themes = ["pacific", "warm", "hybrid"];
+        const params = new URLSearchParams(window.location.search);
+        const paramTheme = params.get("theme");
+        let storedTheme = null;
+        try {
+          storedTheme = window.localStorage.getItem("sti-theme");
+        } catch (error) {
+          storedTheme = null;
+        }
+        let theme = defaultTheme;
+        if (paramTheme && themes.includes(paramTheme)) {
+          theme = paramTheme;
+          try {
+            window.localStorage.setItem("sti-theme", theme);
+          } catch (error) {
+            // Ignore storage errors.
+          }
+        } else if (storedTheme && themes.includes(storedTheme)) {
+          theme = storedTheme;
+        }
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header>
+      <div class="nav-wrap">
+        <a class="logo" href="/index.html">Seattle Tabla Institute</a>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false">
+          Menu
+        </button>
+        <nav class="nav-links" data-nav-links>
+          <a href="/programs.html">Programs</a>
+          <a href="/events.html">Events</a>
+          <a href="/gallery.html">Gallery</a>
+          <a href="/about.html">About</a>
+          <a href="/policies.html">Policies</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/join.html" class="nav-cta">Join a Class</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="site-shell">
+      <section class="page-hero reveal">
+        <p class="eyebrow">Support</p>
+        <h1>Donate to Seattle Tabla Institute (Test mode)</h1>
+        <p>
+          Donations help us expand access to arts education and support community programming.
+        </p>
+        <div class="test-banner">Payments are currently in TEST mode.</div>
+      </section>
+
+      <section class="section reveal">
+        <div class="section-title">
+          <h2>Donation amount</h2>
+          <p class="meta">Enter any amount from $5 to $2,000.</p>
+        </div>
+        <div class="payment-card">
+          <form class="form" id="donation-form">
+            <label for="donation-amount">Amount (USD)</label>
+            <input
+              type="number"
+              id="donation-amount"
+              name="amount"
+              min="5"
+              max="2000"
+              step="0.01"
+              placeholder="50.00"
+              required
+            />
+            <button class="button primary" type="submit" id="donate-button">Donate (Test)</button>
+            <p class="form-error" data-error></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <h3>Seattle Tabla Institute</h3>
+          <p>Seattle Tabla Institute is a nonprofit arts education organization.</p>
+          <p>EIN 27-2849217</p>
+          <p>Seattle, WA · Serving the Greater Seattle area.</p>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p><a href="mailto:info@seattletablainstitute.org">info@seattletablainstitute.org</a></p>
+          <p>Seattle, WA · Bellevue · Redmond · Issaquah</p>
+          <p><a href="/contact.html">Contact page</a></p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <p><a href="/events.html">Events</a></p>
+          <p><a href="/programs.html">Programs</a></p>
+          <p><a href="/join.html">Join a class</a></p>
+          <p><a href="/policies.html">Policies</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/scripts.js" defer></script>
+    <script>
+      const form = document.querySelector("#donation-form");
+      const amountInput = document.querySelector("#donation-amount");
+      const errorNode = document.querySelector("[data-error]");
+      const donateButton = document.querySelector("#donate-button");
+
+      const setLoading = (isLoading) => {
+        if (!donateButton) return;
+        donateButton.disabled = isLoading;
+        donateButton.textContent = isLoading ? "Loading..." : "Donate (Test)";
+      };
+
+      const validateAmount = (value) => {
+        const amount = Number(value);
+        if (!Number.isFinite(amount)) return false;
+        if (amount < 5 || amount > 2000) return false;
+        const rounded = Math.round(amount * 100);
+        return Math.abs(rounded / 100 - amount) < 0.001;
+      };
+
+      form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!amountInput) return;
+        if (errorNode) errorNode.textContent = "";
+
+        if (!validateAmount(amountInput.value)) {
+          if (errorNode) errorNode.textContent = "Enter an amount between $5 and $2,000.";
+          return;
+        }
+
+        setLoading(true);
+        try {
+          const response = await fetch("/api/stripe/create-donation-session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ amount: amountInput.value })
+          });
+          const data = await response.json();
+          if (!response.ok || !data.url) {
+            throw new Error(data.error || "Payments are in setup mode. Try again later.");
+          }
+          window.location.href = data.url;
+        } catch (error) {
+          if (errorNode) {
+            errorNode.textContent =
+              error instanceof Error ? error.message : "Payments are in setup mode. Try again later.";
+          }
+        } finally {
+          setLoading(false);
+        }
+      });
+    </script>
+  </body>
+</html>
