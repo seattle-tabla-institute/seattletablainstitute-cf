@@ -245,10 +245,33 @@ const renderGallery = async () => {
     (data.photos || []).forEach((photo) => {
       const card = document.createElement("div");
       card.className = "media-card";
-      card.innerHTML = `
-        <img src="${encodeURI(photo.image)}" alt="${photo.alt || "STI gallery"}" loading="lazy" decoding="async" width="640" height="480" />
-        ${photo.caption ? `<p class="media-caption">${photo.caption}</p>` : ""}
-      `;
+      const trigger = document.createElement("button");
+      trigger.type = "button";
+      trigger.className = "media-trigger";
+      trigger.setAttribute("data-lightbox-trigger", "");
+      trigger.dataset.lightboxType = "image";
+      trigger.dataset.lightboxSrc = photo.image || "";
+      trigger.dataset.lightboxTitle = photo.caption || photo.alt || "Photo";
+      if (photo.caption) {
+        trigger.dataset.lightboxCaption = photo.caption;
+      }
+
+      const img = document.createElement("img");
+      img.src = encodeURI(photo.image || "");
+      img.alt = photo.alt || "STI gallery";
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.width = 640;
+      img.height = 480;
+      trigger.appendChild(img);
+      card.appendChild(trigger);
+
+      if (photo.caption) {
+        const caption = document.createElement("p");
+        caption.className = "media-caption";
+        caption.textContent = photo.caption;
+        card.appendChild(caption);
+      }
       photoGrid.appendChild(card);
     });
   }
@@ -273,9 +296,98 @@ const renderGallery = async () => {
         </div>
         ${video.title ? `<p class="media-caption">${video.title}</p>` : ""}
       `;
+      const watchButton = document.createElement("button");
+      watchButton.type = "button";
+      watchButton.className = "button ghost media-trigger";
+      watchButton.textContent = "Watch video";
+      watchButton.setAttribute("data-lightbox-trigger", "");
+      watchButton.dataset.lightboxType = "video";
+      watchButton.dataset.lightboxSrc = embed;
+      watchButton.dataset.lightboxTitle = video.title || "Video";
+      card.appendChild(watchButton);
       videoGrid.appendChild(card);
     });
   }
+};
+
+const initLightbox = () => {
+  const dialog = document.querySelector("[data-lightbox]");
+  if (!dialog) {
+    return;
+  }
+
+  const mediaContainer = dialog.querySelector("[data-lightbox-media]");
+  const title = dialog.querySelector("[data-lightbox-title]");
+  const caption = dialog.querySelector("[data-lightbox-caption]");
+  const closeButton = dialog.querySelector("[data-lightbox-close]");
+
+  const reset = () => {
+    if (mediaContainer) {
+      mediaContainer.innerHTML = "";
+    }
+    if (caption) {
+      caption.textContent = "";
+    }
+  };
+
+  const open = (type, src, heading, text) => {
+    if (!mediaContainer || !src) {
+      return;
+    }
+    reset();
+    if (title) {
+      title.textContent = heading || "";
+    }
+
+    if (type === "video") {
+      const frameWrap = document.createElement("div");
+      frameWrap.className = "lightbox-video";
+      const iframe = document.createElement("iframe");
+      iframe.src = src;
+      iframe.title = heading || "Video";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      frameWrap.appendChild(iframe);
+      mediaContainer.appendChild(frameWrap);
+    } else {
+      const img = document.createElement("img");
+      img.className = "lightbox-media";
+      img.src = encodeURI(src);
+      img.alt = heading || "Photo";
+      img.decoding = "async";
+      mediaContainer.appendChild(img);
+    }
+
+    if (caption && text) {
+      caption.textContent = text;
+    }
+
+    dialog.showModal();
+  };
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-lightbox-trigger]");
+    if (!trigger) {
+      return;
+    }
+    event.preventDefault();
+    open(
+      trigger.dataset.lightboxType || "image",
+      trigger.dataset.lightboxSrc || "",
+      trigger.dataset.lightboxTitle || "",
+      trigger.dataset.lightboxCaption || ""
+    );
+  });
+
+  if (closeButton) {
+    closeButton.addEventListener("click", () => dialog.close());
+  }
+
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -283,4 +395,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderEvents();
   renderHomeEvent();
   renderGallery();
+  initLightbox();
 });
