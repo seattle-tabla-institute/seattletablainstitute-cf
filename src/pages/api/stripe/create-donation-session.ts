@@ -95,6 +95,10 @@ export async function POST(context: APIContext) {
     return jsonResponse({ url: session.url });
   } catch (error) {
     console.error("Stripe create donation session error", error);
+    if (env.STRIPE_DEBUG === "true") {
+      const message = error instanceof Error ? error.message : "Stripe error";
+      return errorResponse(`Stripe error: ${message}`, 500);
+    }
     return errorResponse("Unable to start checkout. Please try again.", 500);
   }
 }
