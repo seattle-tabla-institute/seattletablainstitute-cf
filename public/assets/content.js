@@ -51,6 +51,20 @@ const setPricingCards = (element, pricing) => {
   });
 };
 
+const buildImageSrcset = (image) => {
+  if (!image || !image.endsWith(".webp")) {
+    return "";
+  }
+
+  const base = image.slice(0, -5);
+  const candidates = [
+    { url: `${base}-480.webp`, width: 480 },
+    { url: `${base}-800.webp`, width: 800 },
+    { url: image, width: 940 }
+  ];
+  return candidates.map((entry) => `${encodeURI(entry.url)} ${entry.width}w`).join(", ");
+};
+
 const renderClasses = async () => {
   const youthHighlights = document.querySelector("#youth-highlights");
   const youthLocations = document.querySelector("#youth-locations");
@@ -109,8 +123,9 @@ const createEventCard = (event) => {
     event.summary ||
     "Join us for an intimate community gathering featuring live tabla and Hindustani music.";
   const summary = `<p>${summaryText}</p>`;
+  const srcset = buildImageSrcset(event.image);
   const image = event.image
-    ? `<img src="${encodeURI(event.image)}" alt="${event.title || "Event image"}" loading="lazy" decoding="async" width="440" height="320" />`
+    ? `<img src="${encodeURI(event.image)}" ${srcset ? `srcset="${srcset}"` : ""} sizes="(max-width: 720px) 100vw, 220px" alt="${event.title || "Event image"}" loading="lazy" decoding="async" width="940" height="625" />`
     : "";
   const ticketsUrl = event.ticketsUrl ? encodeURI(event.ticketsUrl) : "";
   const tickets = ticketsUrl
@@ -184,8 +199,9 @@ const renderHomeEvent = async () => {
   const summaryText =
     event.summary ||
     "Join us for an intimate community gathering featuring live tabla and Hindustani music.";
+  const srcset = buildImageSrcset(event.image);
   const image = event.image
-    ? `<img class="event-thumb" src="${encodeURI(event.image)}" alt="${event.title || "Event image"}" loading="lazy" decoding="async" width="720" height="405" />`
+    ? `<img class="event-thumb" src="${encodeURI(event.image)}" ${srcset ? `srcset="${srcset}"` : ""} sizes="(max-width: 720px) 100vw, 360px" alt="${event.title || "Event image"}" loading="lazy" decoding="async" width="940" height="625" />`
     : "";
 
   homeCard.innerHTML = `
