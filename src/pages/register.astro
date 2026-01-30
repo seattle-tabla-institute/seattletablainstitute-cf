@@ -205,12 +205,19 @@ const pageDescription = "Register for Seattle Tabla Institute classes (test mode
           });
 
           let data = null;
-          try {
-            data = await response.json();
-          } catch (parseError) {
-            const text = await response.text();
-            console.error("Checkout response was not JSON", { status: response.status, text });
-            throw new Error("Unexpected response from checkout. Try again later.");
+          const responseClone = response.clone();
+          const contentType = response.headers.get("content-type") || "";
+          if (contentType.includes("application/json")) {
+            try {
+              data = await response.json();
+            } catch (parseError) {
+              console.error("Checkout response JSON parse failed", { status: response.status, parseError });
+              throw new Error("Unexpected response from checkout. Try again later.");
+            }
+          } else {
+            const text = await responseClone.text();
+            console.error("Checkout response was not JSON", { status: response.status, contentType, text });
+            throw new Error("Checkout endpoint not available on this deploy. Try again later.");
           }
           if (!response.ok || !data?.url) {
             console.error("Checkout error", { status: response.status, data });
