@@ -156,10 +156,17 @@ const initPaymentButtons = () => {
         })
       });
 
-      const data = await response.json();
-      if (!response.ok || !data.url) {
+      let data = null;
+      try {
+        data = await response.json();
+      } catch (parseError) {
+        const text = await response.text();
+        console.error("Checkout response was not JSON", { status: response.status, text });
+        throw new Error("Unexpected response from checkout. Try again later.");
+      }
+      if (!response.ok || !data?.url) {
         console.error("Checkout error", { status: response.status, data });
-        throw new Error(data.error || "Payments are in setup mode. Try again later.");
+        throw new Error(data?.error || "Payments are in setup mode. Try again later.");
       }
 
       window.location.href = data.url;
