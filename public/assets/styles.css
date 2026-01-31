@@ -842,10 +842,11 @@ footer {
   transform: translateY(-1px);
 }
 
-.social-link svg {
+.social-icon {
   width: 18px;
   height: 18px;
-  fill: currentColor;
+  display: block;
+  filter: brightness(0) invert(1);
 }
 
 .social-link.is-disabled {
