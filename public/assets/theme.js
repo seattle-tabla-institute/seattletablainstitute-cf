@@ -4,7 +4,7 @@ const THEME_LABELS = {
   pacific: "Pacific Harmony",
   warm: "Warm Community Calm",
   hybrid: "Hybrid",
-  "olive-subtle": "Olive (Modern, Subtle)",
+  "olive-subtle": "Olive",
 };
 
 const applyTheme = (theme, { persist } = { persist: true }) => {
