@@ -1,9 +1,10 @@
 const THEME_STORAGE_KEY = "sti-theme";
-const THEMES = ["pacific", "warm", "hybrid"];
+const THEMES = ["pacific", "warm", "hybrid", "olive-subtle"];
 const THEME_LABELS = {
   pacific: "Pacific Harmony",
   warm: "Warm Community Calm",
   hybrid: "Hybrid",
+  "olive-subtle": "Olive (Modern, Subtle)",
 };
 
 const applyTheme = (theme, { persist } = { persist: true }) => {
