@@ -19,7 +19,7 @@
     <script>
       (() => {
         const defaultTheme = "hybrid";
-        const themes = ["pacific", "warm", "hybrid"];
+        const themes = ["pacific", "warm", "hybrid", "olive-subtle"];
         const params = new URLSearchParams(window.location.search);
         const paramTheme = params.get("theme");
         let storedTheme = null;
@@ -187,6 +187,7 @@
           <label for="theme-select">Theme</label>
           <select id="theme-select" data-theme-select>
             <option value="hybrid">Hybrid</option>
+            <option value="olive-subtle">Olive</option>
             <option value="pacific">Pacific Harmony</option>
             <option value="warm">Warm Community Calm</option>
           </select>
