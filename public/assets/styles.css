@@ -817,9 +817,47 @@ footer {
   opacity: 0.92;
 }
 
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--bg-muted) 35%, transparent);
+  color: var(--bg-muted);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background: color-mix(in srgb, var(--bg-muted) 18%, transparent);
+  color: var(--bg-muted);
+  transform: translateY(-1px);
+}
+
+.social-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.social-link.is-disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
 /* To hide the theme preview UI later, set .theme-preview { display: none; } */
 .theme-preview {
-  margin: 16px auto 0;
+  margin: 0;
   padding: 12px 14px;
   border: 1px solid color-mix(in srgb, var(--bg-muted) 40%, transparent);
   border-radius: var(--radius-md);
@@ -830,6 +868,21 @@ footer {
   max-width: var(--max-width);
   color: var(--bg-muted);
   background: color-mix(in srgb, var(--bg-muted) 10%, var(--text));
+}
+
+.footer-lower {
+  margin-top: 16px;
+}
+
+.footer-lower-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
 .theme-preview label {
