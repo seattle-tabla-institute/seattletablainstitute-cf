@@ -857,7 +857,7 @@ footer {
 
 /* To hide the theme preview UI later, set .theme-preview { display: none; } */
 .theme-preview {
-  margin: 16px auto 0;
+  margin: 16px 0 0;
   padding: 12px 14px;
   border: 1px solid color-mix(in srgb, var(--bg-muted) 40%, transparent);
   border-radius: var(--radius-md);
@@ -868,6 +868,15 @@ footer {
   max-width: var(--max-width);
   color: var(--bg-muted);
   background: color-mix(in srgb, var(--bg-muted) 10%, var(--text));
+}
+
+footer > .theme-preview,
+footer > .footer-follow {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 
 .theme-preview label {
