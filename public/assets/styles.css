@@ -871,8 +871,12 @@ footer {
 }
 
 .footer-lower {
+  margin-top: 16px;
+}
+
+.footer-lower-inner {
   max-width: var(--max-width);
-  margin: 16px auto 0;
+  margin: 0 auto;
   padding: 0 24px;
   display: flex;
   flex-direction: column;
