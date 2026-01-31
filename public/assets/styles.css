@@ -857,7 +857,7 @@ footer {
 
 /* To hide the theme preview UI later, set .theme-preview { display: none; } */
 .theme-preview {
-  margin: 16px 0 0;
+  margin: 0;
   padding: 12px 14px;
   border: 1px solid color-mix(in srgb, var(--bg-muted) 40%, transparent);
   border-radius: var(--radius-md);
@@ -870,12 +870,14 @@ footer {
   background: color-mix(in srgb, var(--bg-muted) 10%, var(--text));
 }
 
-footer > .theme-preview,
-footer > .footer-follow {
+.footer-lower {
   max-width: var(--max-width);
-  margin-left: auto;
-  margin-right: auto;
+  margin: 16px auto 0;
   padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
   box-sizing: border-box;
 }
 
