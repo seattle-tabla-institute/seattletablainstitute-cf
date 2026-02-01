@@ -3,7 +3,7 @@ import {
   errorResponse,
   getClientIp,
   getEnv,
-  getSiteUrl,
+  getRequestSiteUrl,
   getStripe,
   isAllowedOrigin,
   jsonResponse,
@@ -62,7 +62,7 @@ export async function POST(context: APIContext) {
     return errorResponse("Payments are in setup mode. Try again later.", 503);
   }
 
-  const siteUrl = getSiteUrl(env);
+  const siteUrl = getRequestSiteUrl(context.request, env);
   const successUrl = `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`;
   const cancelUrl = `${siteUrl}/checkout/cancel`;
 
