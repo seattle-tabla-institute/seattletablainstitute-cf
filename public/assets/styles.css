@@ -294,6 +294,10 @@ summary {
   padding: 44px 0;
 }
 
+.section.tight-top {
+  padding-top: 20px;
+}
+
 .section-title {
   display: flex;
   align-items: baseline;
@@ -452,6 +456,19 @@ summary {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px;
+}
+
+.classes-stack {
+  display: grid;
+  gap: 32px;
+}
+
+.class-block .card {
+  margin-top: 16px;
+}
+
+.registration-widget {
+  margin-top: 12px;
 }
 
 .info-row {

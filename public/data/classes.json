@@ -34,21 +34,14 @@
         "package": "intro_2"
       },
       {
-        "label": "6-class series",
-        "price": "$210.00",
+        "label": "Half semester",
+        "price": "$240.00",
         "notes": "Test mode checkout",
         "group": "adult",
-        "package": "class_6"
+        "package": "half_semester"
       },
       {
-        "label": "10-class series",
-        "price": "$280.00",
-        "notes": "Test mode checkout",
-        "group": "adult",
-        "package": "class_10"
-      },
-      {
-        "label": "16-class semester",
+        "label": "Full semester",
         "price": "$337.50",
         "notes": "Test mode checkout",
         "group": "adult",
