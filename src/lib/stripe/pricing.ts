@@ -1,5 +1,5 @@
 export type ClassGroup = "adult" | "youth";
-export type PackageKey = "intro_2" | "class_6" | "class_10" | "semester_16";
+export type PackageKey = "intro_2" | "half_semester" | "semester_16";
 
 export type PriceDefinition = {
   amount: number;
@@ -16,21 +16,15 @@ export const pricingMap: Record<ClassGroup, Record<PackageKey, PriceDefinition>>
       description: "Two introductory adult tabla classes",
       priceIdEnv: "STRIPE_PRICE_ADULT_INTRO_2"
     },
-    class_6: {
-      amount: 21000,
-      label: "Adult: 6 classes",
-      description: "Six adult tabla classes",
-      priceIdEnv: "STRIPE_PRICE_ADULT_CLASS_6"
-    },
-    class_10: {
-      amount: 28000,
-      label: "Adult: 10 classes",
-      description: "Ten adult tabla classes",
-      priceIdEnv: "STRIPE_PRICE_ADULT_CLASS_10"
+    half_semester: {
+      amount: 24000,
+      label: "Adult: Half semester",
+      description: "Half semester of adult tabla classes",
+      priceIdEnv: "STRIPE_PRICE_ADULT_HALF_SEMESTER"
     },
     semester_16: {
       amount: 33750,
-      label: "Adult: 16 class semester",
+      label: "Adult: Full semester",
       description: "Sixteen adult tabla classes",
       priceIdEnv: "STRIPE_PRICE_ADULT_SEMESTER_16"
     }
@@ -41,24 +35,9 @@ export const pricingMap: Record<ClassGroup, Record<PackageKey, PriceDefinition>>
       label: "Youth: 2 introductory classes",
       description: "Two introductory youth tabla classes",
       priceIdEnv: "STRIPE_PRICE_YOUTH_INTRO_2"
-    },
-    class_6: {
-      amount: 0,
-      label: "",
-      description: ""
-    },
-    class_10: {
-      amount: 0,
-      label: "",
-      description: ""
-    },
-    semester_16: {
-      amount: 0,
-      label: "",
-      description: ""
     }
   }
 };
 
-export const adultPackages: PackageKey[] = ["intro_2", "class_6", "class_10", "semester_16"];
+export const adultPackages: PackageKey[] = ["intro_2", "half_semester", "semester_16"];
 export const youthPackages: PackageKey[] = ["intro_2"];

@@ -454,6 +454,19 @@ summary {
   gap: 24px;
 }
 
+.classes-stack {
+  display: grid;
+  gap: 32px;
+}
+
+.class-block .card {
+  margin-top: 16px;
+}
+
+.registration-widget {
+  margin-top: 12px;
+}
+
 .info-row {
   display: flex;
   flex-wrap: wrap;

@@ -3,7 +3,7 @@ const pageTitle = "Register | Seattle Tabla Institute";
 const pageDescription = "Register for Seattle Tabla Institute classes (test mode payments).";
 ---
 <!DOCTYPE html>
-<html lang="en" data-theme="hybrid">
+<html lang="en" data-theme="olive-subtle">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@ const pageDescription = "Register for Seattle Tabla Institute classes (test mode
     <link rel="stylesheet" href="/assets/styles.css" />
     <script>
       (() => {
-        const defaultTheme = "hybrid";
-        const themes = ["pacific", "warm", "hybrid"];
+        const defaultTheme = "olive-subtle";
+        const themes = ["pacific", "warm", "hybrid", "olive-subtle"];
         const params = new URLSearchParams(window.location.search);
         const paramTheme = params.get("theme");
         let storedTheme = null;
@@ -61,7 +61,7 @@ const pageDescription = "Register for Seattle Tabla Institute classes (test mode
           Menu
         </button>
         <nav class="nav-links" data-nav-links>
-          <a href="/programs.html">Programs</a>
+          <a href="/programs.html">Classes</a>
           <a href="/events.html">Events</a>
           <a href="/gallery.html">Gallery</a>
           <a href="/about.html">About</a>
@@ -99,25 +99,16 @@ const pageDescription = "Register for Seattle Tabla Institute classes (test mode
             </div>
           </article>
           <article class="payment-card">
-            <h3>6 classes</h3>
-            <p class="note">$210.00</p>
+            <h3>Half semester</h3>
+            <p class="note">$240.00</p>
             <div class="payment-actions">
-              <button class="button primary" data-pay data-group="adult" data-package="class_6">
+              <button class="button primary" data-pay data-group="adult" data-package="half_semester">
                 Register (Test)
               </button>
             </div>
           </article>
           <article class="payment-card">
-            <h3>10 classes</h3>
-            <p class="note">$280.00</p>
-            <div class="payment-actions">
-              <button class="button primary" data-pay data-group="adult" data-package="class_10">
-                Register (Test)
-              </button>
-            </div>
-          </article>
-          <article class="payment-card">
-            <h3>16 class semester</h3>
+            <h3>Full semester</h3>
             <p class="note">$337.50</p>
             <div class="payment-actions">
               <button class="button primary" data-pay data-group="adult" data-package="semester_16">
@@ -165,7 +156,7 @@ const pageDescription = "Register for Seattle Tabla Institute classes (test mode
         <div>
           <h3>Explore</h3>
           <p><a href="/events.html">Events</a></p>
-          <p><a href="/programs.html">Programs</a></p>
+          <p><a href="/programs.html">Classes</a></p>
           <p><a href="/join.html">Join a class</a></p>
           <p><a href="/policies.html">Policies</a></p>
         </div>
