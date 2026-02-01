@@ -33,7 +33,7 @@ const applyTheme = (theme, { persist } = { persist: true }) => {
   }
 };
 
-const currentTheme = document.documentElement.getAttribute("data-theme") || "hybrid";
+const currentTheme = document.documentElement.getAttribute("data-theme") || "olive-subtle";
 applyTheme(currentTheme, { persist: false });
 
 const themeSelect = document.querySelector("[data-theme-select]");
