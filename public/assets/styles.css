@@ -294,6 +294,10 @@ summary {
   padding: 44px 0;
 }
 
+.section.tight-top {
+  padding-top: 20px;
+}
+
 .section-title {
   display: flex;
   align-items: baseline;
