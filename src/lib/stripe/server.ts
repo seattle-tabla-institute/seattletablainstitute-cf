@@ -80,5 +80,26 @@ export const getSiteUrl = (env: StripeEnv) => {
   return site.replace(/\/$/, "");
 };
 
+export const getRequestSiteUrl = (request: Request, env: StripeEnv) => {
+  const fallback = env.SITE_URL || "";
+  const fromUrl = (() => {
+    try {
+      const url = new URL(request.url);
+      return url.origin !== "null" ? url.origin : "";
+    } catch (error) {
+      return "";
+    }
+  })();
+  const fromOrigin = request.headers.get("Origin") || "";
+  const host = request.headers.get("Host") || "";
+  const proto = request.headers.get("X-Forwarded-Proto") || "https";
+  const fromHost = host ? `${proto}://${host}` : "";
+  const site = fromUrl || fromOrigin || fromHost || fallback;
+  if (!site) {
+    throw new Error("SITE_URL is not set.");
+  }
+  return site.replace(/\/$/, "");
+};
+
 export const getClientIp = (request: Request) =>
   request.headers.get("CF-Connecting-IP") || request.headers.get("x-forwarded-for") || "unknown";
