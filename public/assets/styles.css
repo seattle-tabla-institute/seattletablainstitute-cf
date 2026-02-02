@@ -111,11 +111,20 @@ header {
   font-weight: 600;
   letter-spacing: 0.4px;
   color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .logo:hover,
 .logo:focus {
   color: var(--text);
+}
+
+.logo-mark {
+  height: 28px;
+  width: auto;
+  display: block;
 }
 
 .nav-links {
