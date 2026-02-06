@@ -14,11 +14,23 @@
       "image": "/assets/uploads/photos/2/image.jpeg",
       "alt": "Jam Session - April 15, 2025",
       "caption": "Jam Session - April 15, 2025"
+    },
+    {
+      "image": "/assets/uploads/photos/3/image.jpeg"
+    },
+    {
+      "image": "/assets/uploads/photos/4/image.jpeg"
+    },
+    {
+      "image": "/assets/uploads/photos/5/image.jpeg"
+    },
+    {
+      "image": "/assets/uploads/photos/6/image.jpeg"
     }
   ],
   "videos": [
     {
-      "title": "Tabla Recital @ the Volunteer Park on 8/25/2024",
+      "title": "Tabla Recital @ the Volunteer Park on 8/25/2024`",
       "url": "https://youtu.be/eD_ZoZRL3JQ"
     },
     {
