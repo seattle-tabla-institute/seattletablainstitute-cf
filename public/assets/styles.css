@@ -20,6 +20,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: "Manrope", "Work Sans", sans-serif;
@@ -486,7 +490,24 @@ summary {
 }
 
 .registration-widget {
-  margin-top: 12px;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.registration-widget iframe {
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  display: block;
+}
+
+.registration-cta {
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .info-row {
