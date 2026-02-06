@@ -113,7 +113,7 @@ header {
   color: var(--text);
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .logo:hover,
@@ -122,9 +122,10 @@ header {
 }
 
 .logo-mark {
-  height: 28px;
+  height: 40px;
   width: auto;
   display: block;
+  margin: 0;
 }
 
 .nav-links {
