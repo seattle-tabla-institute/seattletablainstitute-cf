@@ -44,7 +44,7 @@ const setPricingCards = (element, pricing) => {
     card.className = "price-card";
     const cta =
       price.group && price.package
-        ? `<button class="button primary" data-pay data-group="${price.group}" data-package="${price.package}">Register (Test)</button>`
+        ? `<button class="button primary" data-pay data-group="${price.group}" data-package="${price.package}">Register</button>`
         : "";
     card.innerHTML = `
       <strong>${price.label || ""}</strong>

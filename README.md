@@ -80,12 +80,12 @@ Environment variables:
 - Update PayPal links when ready.
 - Replace gallery placeholders in `assets/uploads/`.
 
-## Payments (Stripe Test Mode)
-- [ ] Create Stripe account in Test mode and enable 2FA
+## Payments (Stripe)
+- [ ] Confirm Stripe account is activated for live payments and 2FA is enabled
 - [ ] Add Cloudflare Pages env vars (`STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `SITE_URL`, `STRIPE_MODE`)
-- [ ] (Optional) Add Stripe Price IDs for class packages
+- [ ] Add Stripe Price IDs for class packages
 - [ ] Create Stripe webhook endpoint for `/api/stripe/webhook`
-- [ ] Confirm test checkout flows return to `/checkout/success`
+- [ ] Confirm checkout flows return to `/checkout/success`
 
 See `docs/stripe-setup.md` for full setup steps and account ownership migration guidance.
 
