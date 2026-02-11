@@ -11,7 +11,6 @@
       {
         "label": "Intro pack (2 classes)",
         "price": "$20.00",
-        "notes": "Test mode checkout",
         "group": "youth",
         "package": "intro_2"
       }
@@ -29,21 +28,18 @@
       {
         "label": "Intro pack (2 classes)",
         "price": "$40.00",
-        "notes": "Test mode checkout",
         "group": "adult",
         "package": "intro_2"
       },
       {
         "label": "Half semester",
         "price": "$240.00",
-        "notes": "Test mode checkout",
         "group": "adult",
         "package": "half_semester"
       },
       {
         "label": "Full semester",
         "price": "$337.50",
-        "notes": "Test mode checkout",
         "group": "adult",
         "package": "semester_16"
       }

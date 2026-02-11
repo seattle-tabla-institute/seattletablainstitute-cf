@@ -1,9 +1,9 @@
 ---
 const pageTitle = "Donate | Seattle Tabla Institute";
-const pageDescription = "Support Seattle Tabla Institute with a test mode donation.";
+const pageDescription = "Support Seattle Tabla Institute with a donation.";
 ---
 <!DOCTYPE html>
-<html lang="en" data-theme="hybrid">
+<html lang="en" data-theme="olive-subtle">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,8 +27,8 @@ const pageDescription = "Support Seattle Tabla Institute with a test mode donati
     <link rel="stylesheet" href="/assets/styles.css" />
     <script>
       (() => {
-        const defaultTheme = "hybrid";
-        const themes = ["pacific", "warm", "hybrid"];
+        const defaultTheme = "olive-subtle";
+        const themes = ["pacific", "warm", "hybrid", "olive-subtle"];
         const params = new URLSearchParams(window.location.search);
         const paramTheme = params.get("theme");
         let storedTheme = null;
@@ -75,11 +75,10 @@ const pageDescription = "Support Seattle Tabla Institute with a test mode donati
     <main id="main" class="site-shell">
       <section class="page-hero reveal">
         <p class="eyebrow">Support</p>
-        <h1>Donate to Seattle Tabla Institute (Test mode)</h1>
+        <h1>Donate to Seattle Tabla Institute</h1>
         <p>
           Donations help us expand access to arts education and support community programming.
         </p>
-        <div class="test-banner">Payments are currently in TEST mode.</div>
       </section>
 
       <section class="section reveal">
@@ -100,7 +99,7 @@ const pageDescription = "Support Seattle Tabla Institute with a test mode donati
               placeholder="50.00"
               required
             />
-            <button class="button primary" type="submit" id="donate-button">Donate (Test)</button>
+            <button class="button primary" type="submit" id="donate-button">Donate</button>
             <p class="form-error" data-error></p>
           </form>
         </div>
@@ -141,7 +140,7 @@ const pageDescription = "Support Seattle Tabla Institute with a test mode donati
       const setLoading = (isLoading) => {
         if (!donateButton) return;
         donateButton.disabled = isLoading;
-        donateButton.textContent = isLoading ? "Loading..." : "Donate (Test)";
+        donateButton.textContent = isLoading ? "Loading..." : "Donate";
       };
 
       const validateAmount = (value) => {

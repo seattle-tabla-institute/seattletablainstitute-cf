@@ -911,8 +911,8 @@ footer {
   pointer-events: none;
 }
 
-/* To hide the theme preview UI later, set .theme-preview { display: none; } */
 .theme-preview {
+  display: none;
   margin: 0;
   padding: 12px 14px;
   border: 1px solid color-mix(in srgb, var(--bg-muted) 40%, transparent);
